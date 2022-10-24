@@ -1,0 +1,4 @@
+CONSTRUCT WHERE {
+    ?x a [:node] ;
+          [:edge] ?y
+}

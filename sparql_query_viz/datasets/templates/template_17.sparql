@@ -1,0 +1,11 @@
+SELECT DISTINCT ?x ?y
+WHERE {
+    ?x a/rdfs:subClassOf* [:node1] ;
+        [:edge1] ?z .
+    ?z a [:node2] ;
+        [:edge2] ?y .
+    FILTER NOT EXISTS {
+        ?x a [:node3] .
+    }
+}
+ORDER BY ?x

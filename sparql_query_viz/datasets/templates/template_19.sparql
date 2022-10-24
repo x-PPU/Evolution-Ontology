@@ -1,0 +1,17 @@
+SELECT DISTINCT ?x ?y ?z
+WHERE {
+    ?x a/rdfs:subClassOf* [:node] ;
+        [:edge1] ?w .
+    ?w a [:node1] ;
+        [:edge2] ?y .
+    {
+        SELECT ?x (COUNT(distinct ?v) as ?z)
+        WHERE {
+            ?x [:edge3] ?u .
+            ?u a [:node2] ;
+                [:edge3] ?v .
+            ?v a [:node3] .
+        }
+        GROUP BY ?x
+    }
+    FILTER(?y != ?z)

@@ -1,0 +1,21 @@
+SELECT ?x ?y
+WHERE {
+    {
+        ?x a [:node1] ;
+            [:edge1] ?op1 .
+        ?op1 a [:node2] ;
+        FILTER NOT EXISTS {
+            ?z [:edge2] ?op2 .
+            ?op2 a [:node3] .
+        }
+    } UNION {
+        ?y a [:node1] ;
+            [:edge2] ?op2 .
+        ?op2 a [:node3] ;
+        FILTER NOT EXISTS {
+            ?z [:edge1] ?op1 .
+            ?op1 a [:node2] .
+        }
+    }
+}
+ORDER BY ?x ?y

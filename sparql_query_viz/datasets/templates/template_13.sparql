@@ -1,0 +1,1 @@
+SELECT ?p ?o { [:node] ?p ?o }

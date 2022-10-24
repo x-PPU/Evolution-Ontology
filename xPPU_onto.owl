@@ -1,0 +1,2506 @@
+<?xml version="1.0"?>
+<rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+         xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
+         xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+         xmlns:owl="http://www.w3.org/2002/07/owl#"
+         xml:base="http://example.org/onto-example.owl"
+         xmlns="http://example.org/onto-example.owl#">
+
+<owl:Ontology rdf:about="http://example.org/onto-example.owl"/>
+
+<owl:ObjectProperty rdf:about="#has_info">
+  <owl:inverseOf rdf:resource="#info_for"/>
+</owl:ObjectProperty>
+
+<owl:ObjectProperty rdf:about="#has_version"/>
+
+<owl:ObjectProperty rdf:about="#info_for">
+  <owl:inverseOf rdf:resource="#has_info"/>
+</owl:ObjectProperty>
+
+<owl:ObjectProperty rdf:about="#has_info_source"/>
+
+<owl:ObjectProperty rdf:about="#defined_in">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#TransitiveProperty"/>
+</owl:ObjectProperty>
+
+<owl:ObjectProperty rdf:about="#has_FB"/>
+
+<owl:ObjectProperty rdf:about="#has_action">
+  <owl:inverseOf rdf:resource="#action_for"/>
+</owl:ObjectProperty>
+
+<owl:ObjectProperty rdf:about="#action_for">
+  <owl:inverseOf rdf:resource="#has_action"/>
+</owl:ObjectProperty>
+
+<owl:DatatypeProperty rdf:about="#has_max_value"/>
+
+<owl:DatatypeProperty rdf:about="#has_min_value"/>
+
+<owl:Class rdf:about="#Scenario">
+  <rdfs:subClassOf rdf:resource="http://www.w3.org/2002/07/owl#Thing"/>
+  <rdfs:subClassOf>
+    <owl:Restriction>
+      <owl:onProperty rdf:resource="#has_info_source"/>
+      <owl:someValuesFrom rdf:resource="#document"/>
+    </owl:Restriction>
+  </rdfs:subClassOf>
+  <rdfs:subClassOf>
+    <owl:Restriction>
+      <owl:onProperty rdf:resource="#has_info_source"/>
+      <owl:someValuesFrom rdf:resource="#model"/>
+    </owl:Restriction>
+  </rdfs:subClassOf>
+  <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">source file of the resource</rdfs:comment>
+</owl:Class>
+
+<owl:Class rdf:about="#information_source">
+  <rdfs:subClassOf rdf:resource="http://www.w3.org/2002/07/owl#Thing"/>
+</owl:Class>
+
+<owl:Class rdf:about="#document">
+  <rdfs:subClassOf rdf:resource="#information_source"/>
+</owl:Class>
+
+<owl:Class rdf:about="#document_info">
+  <rdfs:subClassOf rdf:resource="#document"/>
+</owl:Class>
+
+<owl:Class rdf:about="#model">
+  <rdfs:subClassOf rdf:resource="#information_source"/>
+  <rdfs:subClassOf>
+    <owl:Restriction>
+      <owl:onProperty rdf:resource="#has_FB"/>
+      <owl:someValuesFrom rdf:resource="#function_block"/>
+    </owl:Restriction>
+  </rdfs:subClassOf>
+  <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">models in each scnario.</rdfs:comment>
+</owl:Class>
+
+<owl:Class rdf:about="#version">
+  <rdfs:subClassOf rdf:resource="#document_info"/>
+</owl:Class>
+
+<owl:Class rdf:about="#plant_info">
+  <rdfs:subClassOf rdf:resource="#document"/>
+</owl:Class>
+
+<owl:Class rdf:about="#research_plant">
+  <rdfs:subClassOf rdf:resource="http://www.w3.org/2002/07/owl#Thing"/>
+</owl:Class>
+
+<owl:Class rdf:about="#plant_resource">
+  <rdfs:subClassOf rdf:resource="#research_plant"/>
+</owl:Class>
+
+<owl:Class rdf:about="#plant_product">
+  <rdfs:subClassOf rdf:resource="#research_plant"/>
+</owl:Class>
+
+<owl:Class rdf:about="#plant_process">
+  <rdfs:subClassOf rdf:resource="#research_plant"/>
+</owl:Class>
+
+<owl:Class rdf:about="#logistics_process">
+  <rdfs:subClassOf rdf:resource="#plant_process"/>
+</owl:Class>
+
+<owl:Class rdf:about="#manufacturing_process">
+  <rdfs:subClassOf rdf:resource="#plant_process"/>
+</owl:Class>
+
+<owl:Class rdf:about="#assembly_process">
+  <rdfs:subClassOf rdf:resource="#plant_process"/>
+</owl:Class>
+
+<owl:Class rdf:about="#sensor">
+  <rdfs:subClassOf rdf:resource="#plant_resource"/>
+  <rdfs:subClassOf>
+    <owl:Restriction>
+      <owl:onProperty rdf:resource="#defined_in"/>
+      <owl:someValuesFrom rdf:resource="#document"/>
+    </owl:Restriction>
+  </rdfs:subClassOf>
+</owl:Class>
+
+<owl:Class rdf:about="#actuator">
+  <rdfs:subClassOf rdf:resource="#plant_resource"/>
+  <rdfs:subClassOf>
+    <owl:Restriction>
+      <owl:onProperty rdf:resource="#defined_in"/>
+      <owl:someValuesFrom rdf:resource="#document"/>
+    </owl:Restriction>
+  </rdfs:subClassOf>
+</owl:Class>
+
+<owl:Class rdf:about="#﻿Position">
+  <rdfs:subClassOf rdf:resource="#plant_info"/>
+</owl:Class>
+
+<owl:Class rdf:about="#Resource">
+  <rdfs:subClassOf rdf:resource="#plant_info"/>
+</owl:Class>
+
+<owl:Class rdf:about="#Clamp">
+  <rdfs:subClassOf rdf:resource="#plant_info"/>
+</owl:Class>
+
+<owl:Class rdf:about="#Description">
+  <rdfs:subClassOf rdf:resource="#plant_info"/>
+</owl:Class>
+
+<owl:Class rdf:about="#Component">
+  <rdfs:subClassOf rdf:resource="#plant_info"/>
+</owl:Class>
+
+<owl:Class rdf:about="#Type">
+  <rdfs:subClassOf rdf:resource="#plant_info"/>
+</owl:Class>
+
+<owl:Class rdf:about="#Valve">
+  <rdfs:subClassOf rdf:resource="#actuator"/>
+</owl:Class>
+
+<owl:Class rdf:about="#ReedSwitch">
+  <rdfs:subClassOf rdf:resource="#sensor"/>
+</owl:Class>
+
+<owl:Class rdf:about="#MicroSwitch">
+  <rdfs:subClassOf rdf:resource="#sensor"/>
+</owl:Class>
+
+<owl:Class rdf:about="#VacuumSwitch">
+  <rdfs:subClassOf rdf:resource="#sensor"/>
+</owl:Class>
+
+<owl:Class rdf:about="#Motor">
+  <rdfs:subClassOf rdf:resource="#actuator"/>
+</owl:Class>
+
+<owl:Class rdf:about="#plc">
+  <rdfs:subClassOf rdf:resource="#model"/>
+</owl:Class>
+
+<owl:Class rdf:about="#sysml">
+  <rdfs:subClassOf rdf:resource="#model"/>
+</owl:Class>
+
+<owl:Class rdf:about="#function_block">
+  <rdfs:subClassOf rdf:resource="#plc"/>
+  <rdfs:subClassOf>
+    <owl:Restriction>
+      <owl:onProperty rdf:resource="#has_action"/>
+      <owl:someValuesFrom rdf:resource="#action"/>
+    </owl:Restriction>
+  </rdfs:subClassOf>
+</owl:Class>
+
+<owl:Class rdf:about="#action">
+  <rdfs:subClassOf rdf:resource="#plc"/>
+</owl:Class>
+
+<Scenario rdf:about="#xPPU_Sc00">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <has_info_source rdf:resource="#xPPU_Sc00_technical_report"/>
+</Scenario>
+
+<document rdf:about="#xPPU_Sc00_technical_report">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <has_version rdf:resource="#TUM-AIS-TR-01-14-02"/>
+  <has_info rdf:resource="#100"/>
+  <has_info rdf:resource="#100A1"/>
+  <has_info rdf:resource="#100B9"/>
+  <has_info rdf:resource="#100B8"/>
+  <has_info rdf:resource="#100S11"/>
+  <has_info rdf:resource="#200"/>
+  <has_info rdf:resource="#200A1"/>
+  <has_info rdf:resource="#200B7"/>
+  <has_info rdf:resource="#200B6"/>
+  <has_info rdf:resource="#200A2"/>
+  <has_info rdf:resource="#200A3"/>
+  <has_info rdf:resource="#200B5"/>
+  <has_info rdf:resource="#200S8"/>
+  <has_info rdf:resource="#200S9"/>
+  <has_info rdf:resource="#200A5"/>
+  <has_info rdf:resource="#200A6"/>
+  <has_info rdf:resource="#300"/>
+</document>
+
+<version rdf:about="#TUM-AIS-TR-01-14-02">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+</version>
+
+<Resource rdf:about="#100">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <has_info rdf:resource="#1"/>
+  <has_info rdf:resource="#X1"/>
+  <has_info rdf:resource="#Stack"/>
+  <rdf:type rdf:resource="#﻿Position"/>
+</Resource>
+
+<rdf:Description rdf:about="#1">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <rdf:type rdf:resource="#﻿Position"/>
+</rdf:Description>
+
+<Clamp rdf:about="#X1">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+</Clamp>
+
+<Description rdf:about="#Stack">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <rdf:type rdf:resource="#Component"/>
+</Description>
+
+<Resource rdf:about="#100A1">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <has_info rdf:resource="#100"/>
+  <has_info rdf:resource="#X1.1"/>
+  <has_info rdf:resource="#Extendseperator_Valve"/>
+  <has_info rdf:resource="#Stack"/>
+  <has_info rdf:resource="#DO"/>
+  <rdf:type rdf:resource="#Valve"/>
+</Resource>
+
+<Clamp rdf:about="#X1.1">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+</Clamp>
+
+<Description rdf:about="#Extendseperator_Valve">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+</Description>
+
+<Type rdf:about="#DO">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+</Type>
+
+<Resource rdf:about="#100B9">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <has_info rdf:resource="#100"/>
+  <has_info rdf:resource="#X1.2"/>
+  <has_info rdf:resource="#Seperatorisextended_ReedSwitch"/>
+  <has_info rdf:resource="#Stack"/>
+  <has_info rdf:resource="#DI"/>
+  <rdf:type rdf:resource="#ReedSwitch"/>
+</Resource>
+
+<Clamp rdf:about="#X1.2">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+</Clamp>
+
+<Description rdf:about="#Seperatorisextended_ReedSwitch">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+</Description>
+
+<Type rdf:about="#DI">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+</Type>
+
+<Resource rdf:about="#100B8">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <has_info rdf:resource="#100"/>
+  <has_info rdf:resource="#X1.3"/>
+  <has_info rdf:resource="#Seperatorisretracted_ReedSwitch"/>
+  <has_info rdf:resource="#Stack"/>
+  <has_info rdf:resource="#DI"/>
+  <rdf:type rdf:resource="#ReedSwitch"/>
+</Resource>
+
+<Clamp rdf:about="#X1.3">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+</Clamp>
+
+<Description rdf:about="#Seperatorisretracted_ReedSwitch">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+</Description>
+
+<Resource rdf:about="#100S11">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <has_info rdf:resource="#100"/>
+  <has_info rdf:resource="#X1.4"/>
+  <has_info rdf:resource="#WPisavailable_MicroSwitch"/>
+  <has_info rdf:resource="#Stack"/>
+  <has_info rdf:resource="#DI"/>
+  <rdf:type rdf:resource="#MicroSwitch"/>
+</Resource>
+
+<Clamp rdf:about="#X1.4">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+</Clamp>
+
+<Description rdf:about="#WPisavailable_MicroSwitch">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+</Description>
+
+<Resource rdf:about="#200">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <has_info rdf:resource="#2"/>
+  <has_info rdf:resource="#X2"/>
+  <has_info rdf:resource="#Crane"/>
+  <rdf:type rdf:resource="#﻿Position"/>
+</Resource>
+
+<rdf:Description rdf:about="#2">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <rdf:type rdf:resource="#﻿Position"/>
+</rdf:Description>
+
+<Clamp rdf:about="#X2">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+</Clamp>
+
+<Description rdf:about="#Crane">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <rdf:type rdf:resource="#Component"/>
+</Description>
+
+<Resource rdf:about="#200A1">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <has_info rdf:resource="#200"/>
+  <has_info rdf:resource="#X2.1"/>
+  <has_info rdf:resource="#Extendedliftingcylinder_Valve"/>
+  <has_info rdf:resource="#Crane"/>
+  <has_info rdf:resource="#DO"/>
+  <rdf:type rdf:resource="#Valve"/>
+</Resource>
+
+<Clamp rdf:about="#X2.1">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+</Clamp>
+
+<Description rdf:about="#Extendedliftingcylinder_Valve">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+</Description>
+
+<Resource rdf:about="#200B7">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <has_info rdf:resource="#200"/>
+  <has_info rdf:resource="#X2.2"/>
+  <has_info rdf:resource="#Liftingcylinderextended_ReedSwitch"/>
+  <has_info rdf:resource="#Crane"/>
+  <has_info rdf:resource="#DI"/>
+  <rdf:type rdf:resource="#ReedSwitch"/>
+</Resource>
+
+<Clamp rdf:about="#X2.2">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+</Clamp>
+
+<Description rdf:about="#Liftingcylinderextended_ReedSwitch">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+</Description>
+
+<Resource rdf:about="#200B6">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <has_info rdf:resource="#200"/>
+  <has_info rdf:resource="#X2.3"/>
+  <has_info rdf:resource="#Liftingcylinderretracted_ReedSwitch"/>
+  <has_info rdf:resource="#Crane"/>
+  <has_info rdf:resource="#DI"/>
+  <rdf:type rdf:resource="#ReedSwitch"/>
+</Resource>
+
+<Clamp rdf:about="#X2.3">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+</Clamp>
+
+<Description rdf:about="#Liftingcylinderretracted_ReedSwitch">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+</Description>
+
+<Resource rdf:about="#200A2">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <has_info rdf:resource="#200"/>
+  <has_info rdf:resource="#X2.4"/>
+  <has_info rdf:resource="#Intakeworkpiece_Valve"/>
+  <has_info rdf:resource="#Crane"/>
+  <has_info rdf:resource="#DO"/>
+  <rdf:type rdf:resource="#Valve"/>
+</Resource>
+
+<Clamp rdf:about="#X2.4">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+</Clamp>
+
+<Description rdf:about="#Intakeworkpiece_Valve">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+</Description>
+
+<Resource rdf:about="#200A3">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <has_info rdf:resource="#200"/>
+  <has_info rdf:resource="#X2.5"/>
+  <has_info rdf:resource="#Releaseworkpiece_Valve"/>
+  <has_info rdf:resource="#Crane"/>
+  <has_info rdf:resource="#DO"/>
+  <rdf:type rdf:resource="#Valve"/>
+</Resource>
+
+<Clamp rdf:about="#X2.5">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+</Clamp>
+
+<Description rdf:about="#Releaseworkpiece_Valve">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+</Description>
+
+<Resource rdf:about="#200B5">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <has_info rdf:resource="#200"/>
+  <has_info rdf:resource="#X2.6"/>
+  <has_info rdf:resource="#WPtakein_VacuumSwitch"/>
+  <has_info rdf:resource="#Crane"/>
+  <has_info rdf:resource="#DI"/>
+  <rdf:type rdf:resource="#VacuumSwitch"/>
+</Resource>
+
+<Clamp rdf:about="#X2.6">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+</Clamp>
+
+<Description rdf:about="#WPtakein_VacuumSwitch">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+</Description>
+
+<Resource rdf:about="#200S8">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <has_info rdf:resource="#200"/>
+  <has_info rdf:resource="#X2.7"/>
+  <has_info rdf:resource="#Craneatstack_MicroSwitch"/>
+  <has_info rdf:resource="#Crane"/>
+  <has_info rdf:resource="#DI"/>
+  <rdf:type rdf:resource="#MicroSwitch"/>
+</Resource>
+
+<Clamp rdf:about="#X2.7">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+</Clamp>
+
+<Description rdf:about="#Craneatstack_MicroSwitch">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+</Description>
+
+<Resource rdf:about="#200S9">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <has_info rdf:resource="#200"/>
+  <has_info rdf:resource="#X2.8"/>
+  <has_info rdf:resource="#Craneatramp_MicroSwitch"/>
+  <has_info rdf:resource="#Crane"/>
+  <has_info rdf:resource="#DI"/>
+  <rdf:type rdf:resource="#MicroSwitch"/>
+</Resource>
+
+<Clamp rdf:about="#X2.8">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+</Clamp>
+
+<Description rdf:about="#Craneatramp_MicroSwitch">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+</Description>
+
+<Resource rdf:about="#200A5">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <has_info rdf:resource="#200"/>
+  <has_info rdf:resource="#X2.9"/>
+  <has_info rdf:resource="#Turnleft_Motor"/>
+  <has_info rdf:resource="#Crane"/>
+  <has_info rdf:resource="#DO"/>
+  <rdf:type rdf:resource="#Motor"/>
+</Resource>
+
+<Clamp rdf:about="#X2.9">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+</Clamp>
+
+<Description rdf:about="#Turnleft_Motor">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+</Description>
+
+<Resource rdf:about="#200A6">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <has_info rdf:resource="#200"/>
+  <has_info rdf:resource="#X2.10"/>
+  <has_info rdf:resource="#Turnright_Motor"/>
+  <has_info rdf:resource="#Crane"/>
+  <has_info rdf:resource="#DO"/>
+  <rdf:type rdf:resource="#Motor"/>
+</Resource>
+
+<Clamp rdf:about="#X2.10">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+</Clamp>
+
+<Description rdf:about="#Turnright_Motor">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+</Description>
+
+<Resource rdf:about="#300">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <has_info rdf:resource="#3"/>
+  <has_info rdf:resource="#Ramp"/>
+  <has_info rdf:resource="#Y-shapedRamp"/>
+</Resource>
+
+<rdf:Description rdf:about="#3">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <rdf:type rdf:resource="#﻿Position"/>
+</rdf:Description>
+
+<Description rdf:about="#Ramp">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+</Description>
+
+<Scenario rdf:about="#xPPU_Sc01">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <has_info_source rdf:resource="#xPPU_Sc01_technical_report"/>
+  <has_info_source rdf:resource="#xPPU_Sc01_PLCOpenXML"/>
+</Scenario>
+
+<document rdf:about="#xPPU_Sc01_technical_report">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <has_version rdf:resource="#TUM-AIS-TR-01-14-02"/>
+  <has_info rdf:resource="#100"/>
+  <has_info rdf:resource="#100A1"/>
+  <has_info rdf:resource="#100B9"/>
+  <has_info rdf:resource="#100B8"/>
+  <has_info rdf:resource="#100S11"/>
+  <has_info rdf:resource="#200"/>
+  <has_info rdf:resource="#200A1"/>
+  <has_info rdf:resource="#200B7"/>
+  <has_info rdf:resource="#200B6"/>
+  <has_info rdf:resource="#200A2"/>
+  <has_info rdf:resource="#200A3"/>
+  <has_info rdf:resource="#200B5"/>
+  <has_info rdf:resource="#200S8"/>
+  <has_info rdf:resource="#200S9"/>
+  <has_info rdf:resource="#200A5"/>
+  <has_info rdf:resource="#200A6"/>
+  <has_info rdf:resource="#300"/>
+</document>
+
+<Description rdf:about="#Y-shapedRamp">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+</Description>
+
+<Scenario rdf:about="#xPPU_Sc02">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <has_info_source rdf:resource="#xPPU_Sc02_technical_report"/>
+  <has_info_source rdf:resource="#xPPU_Sc02_PLCOpenXML"/>
+</Scenario>
+
+<document rdf:about="#xPPU_Sc02_technical_report">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <has_version rdf:resource="#TUM-AIS-TR-01-14-02"/>
+  <has_info rdf:resource="#100"/>
+  <has_info rdf:resource="#100A1"/>
+  <has_info rdf:resource="#100B9"/>
+  <has_info rdf:resource="#100B8"/>
+  <has_info rdf:resource="#100S11"/>
+  <has_info rdf:resource="#100B10"/>
+  <has_info rdf:resource="#200"/>
+  <has_info rdf:resource="#200A1"/>
+  <has_info rdf:resource="#200B7"/>
+  <has_info rdf:resource="#200B6"/>
+  <has_info rdf:resource="#200A2"/>
+  <has_info rdf:resource="#200A3"/>
+  <has_info rdf:resource="#200B5"/>
+  <has_info rdf:resource="#200S8"/>
+  <has_info rdf:resource="#200S9"/>
+  <has_info rdf:resource="#200A5"/>
+  <has_info rdf:resource="#200A6"/>
+  <has_info rdf:resource="#300"/>
+</document>
+
+<Resource rdf:about="#100B10">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <has_info rdf:resource="#100"/>
+  <has_info rdf:resource="#X1.5"/>
+  <has_info rdf:resource="#WPismetallic"/>
+  <has_info rdf:resource="#Stack"/>
+  <has_info rdf:resource="#DI"/>
+</Resource>
+
+<Clamp rdf:about="#X1.5">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+</Clamp>
+
+<Description rdf:about="#WPismetallic">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+</Description>
+
+<Scenario rdf:about="#xPPU_Sc03">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <has_info_source rdf:resource="#xPPU_Sc03_technical_report"/>
+</Scenario>
+
+<document rdf:about="#xPPU_Sc03_technical_report">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <has_version rdf:resource="#TUM-AIS-TR-01-14-02"/>
+</document>
+
+<Scenario rdf:about="#xPPU_Sc04">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <has_info_source rdf:resource="#xPPU_Sc04_technical_report"/>
+</Scenario>
+
+<document rdf:about="#xPPU_Sc04_technical_report">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <has_version rdf:resource="#TUM-AIS-TR-01-14-02"/>
+</document>
+
+<Scenario rdf:about="#xPPU_Sc05">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <has_info_source rdf:resource="#xPPU_Sc05_technical_report"/>
+</Scenario>
+
+<document rdf:about="#xPPU_Sc05_technical_report">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <has_version rdf:resource="#TUM-AIS-TR-01-14-02"/>
+</document>
+
+<Scenario rdf:about="#xPPU_Sc06">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <has_info_source rdf:resource="#xPPU_Sc06_technical_report"/>
+</Scenario>
+
+<document rdf:about="#xPPU_Sc06_technical_report">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <has_version rdf:resource="#TUM-AIS-TR-01-14-02"/>
+</document>
+
+<Scenario rdf:about="#xPPU_Sc07">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <has_info_source rdf:resource="#xPPU_Sc07_technical_report"/>
+</Scenario>
+
+<document rdf:about="#xPPU_Sc07_technical_report">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <has_version rdf:resource="#TUM-AIS-TR-01-14-02"/>
+</document>
+
+<Scenario rdf:about="#xPPU_Sc08">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <has_info_source rdf:resource="#xPPU_Sc08_technical_report"/>
+</Scenario>
+
+<document rdf:about="#xPPU_Sc08_technical_report">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <has_version rdf:resource="#TUM-AIS-TR-01-14-02"/>
+</document>
+
+<Scenario rdf:about="#xPPU_Sc09">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <has_info_source rdf:resource="#xPPU_Sc09_technical_report"/>
+</Scenario>
+
+<document rdf:about="#xPPU_Sc09_technical_report">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <has_version rdf:resource="#TUM-AIS-TR-01-14-02"/>
+</document>
+
+<Scenario rdf:about="#xPPU_Sc10">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <has_info_source rdf:resource="#xPPU_Sc10_technical_report"/>
+</Scenario>
+
+<document rdf:about="#xPPU_Sc10_technical_report">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <has_version rdf:resource="#TUM-AIS-TR-01-14-02"/>
+</document>
+
+<Scenario rdf:about="#xPPU_Sc11">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <has_info_source rdf:resource="#xPPU_Sc11_technical_report"/>
+</Scenario>
+
+<document rdf:about="#xPPU_Sc11_technical_report">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <has_version rdf:resource="#TUM-AIS-TR-01-14-02"/>
+</document>
+
+<Scenario rdf:about="#xPPU_Sc12">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <has_info_source rdf:resource="#xPPU_Sc12_technical_report"/>
+</Scenario>
+
+<document rdf:about="#xPPU_Sc12_technical_report">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <has_version rdf:resource="#TUM-AIS-TR-01-14-02"/>
+</document>
+
+<Scenario rdf:about="#xPPU_Sc13">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <has_info_source rdf:resource="#xPPU_Sc13_technical_report"/>
+</Scenario>
+
+<document rdf:about="#xPPU_Sc13_technical_report">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <has_version rdf:resource="#TUM-AIS-TR-01-14-02"/>
+</document>
+
+<Scenario rdf:about="#xPPU_Sc14">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <has_info_source rdf:resource="#xPPU_Sc14_technical_report"/>
+</Scenario>
+
+<document rdf:about="#xPPU_Sc14_technical_report">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <has_version rdf:resource="#TUM-AIS-TR-01-14-02"/>
+</document>
+
+<plc rdf:about="#xPPU_Sc01_PLCOpenXML">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <has_FB rdf:resource="#Sc01_FB_MicroSwitch"/>
+  <has_FB rdf:resource="#Sc01_FB_MonostableCylinder"/>
+  <has_FB rdf:resource="#Sc01_FB_Motor"/>
+  <has_FB rdf:resource="#Sc01_FB_OperationPanel"/>
+  <has_FB rdf:resource="#Sc01_FB_TurningTable"/>
+  <has_FB rdf:resource="#Sc01_FB_VacuumGripper"/>
+  <has_FB rdf:resource="#Sc01_FB_VacuumSwitch"/>
+  <has_FB rdf:resource="#Sc01_FB_Valve"/>
+  <has_FB rdf:resource="#Sc01_FB_Crane"/>
+  <has_FB rdf:resource="#Sc01_FB_Stack"/>
+  <has_FB rdf:resource="#Sc01_FB_PPU"/>
+</plc>
+
+<function_block rdf:about="#Sc01_FB_MicroSwitch">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+</function_block>
+
+<function_block rdf:about="#Sc01_FB_MonostableCylinder">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <has_action rdf:resource="#ACT_Extend"/>
+  <has_action rdf:resource="#ACT_Retract"/>
+</function_block>
+
+<action rdf:about="#ACT_Extend">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <rdf:type rdf:resource="#plant_process"/>
+</action>
+
+<action rdf:about="#ACT_Retract">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <rdf:type rdf:resource="#plant_process"/>
+</action>
+
+<function_block rdf:about="#Sc01_FB_Motor">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <has_action rdf:resource="#ACT_Stop"/>
+  <has_action rdf:resource="#ACT_TurnClockwise"/>
+  <has_action rdf:resource="#ACT_TurnCounterclockwise"/>
+</function_block>
+
+<action rdf:about="#ACT_Stop">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <rdf:type rdf:resource="#plant_process"/>
+</action>
+
+<action rdf:about="#ACT_TurnClockwise">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <rdf:type rdf:resource="#plant_process"/>
+</action>
+
+<action rdf:about="#ACT_TurnCounterclockwise">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <rdf:type rdf:resource="#plant_process"/>
+</action>
+
+<function_block rdf:about="#Sc01_FB_OperationPanel">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <has_action rdf:resource="#ACT_TurnLampGreen_Off"/>
+  <has_action rdf:resource="#ACT_TurnLampGreen_On"/>
+  <has_action rdf:resource="#ACT_TurnLampWhite_Off"/>
+  <has_action rdf:resource="#ACT_TurnLampWhite_On"/>
+</function_block>
+
+<action rdf:about="#ACT_TurnLampGreen_Off">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <rdf:type rdf:resource="#plant_process"/>
+</action>
+
+<action rdf:about="#ACT_TurnLampGreen_On">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <rdf:type rdf:resource="#plant_process"/>
+</action>
+
+<action rdf:about="#ACT_TurnLampWhite_Off">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <rdf:type rdf:resource="#plant_process"/>
+</action>
+
+<action rdf:about="#ACT_TurnLampWhite_On">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <rdf:type rdf:resource="#plant_process"/>
+</action>
+
+<function_block rdf:about="#Sc01_FB_TurningTable">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+</function_block>
+
+<function_block rdf:about="#Sc01_FB_VacuumGripper">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <has_action rdf:resource="#ACT_Intake"/>
+  <has_action rdf:resource="#ACT_Release"/>
+</function_block>
+
+<action rdf:about="#ACT_Intake">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <rdf:type rdf:resource="#plant_process"/>
+</action>
+
+<action rdf:about="#ACT_Release">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <rdf:type rdf:resource="#plant_process"/>
+</action>
+
+<function_block rdf:about="#Sc01_FB_VacuumSwitch">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+</function_block>
+
+<function_block rdf:about="#Sc01_FB_Valve">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <has_action rdf:resource="#ACT_TurnVacuumOff"/>
+  <has_action rdf:resource="#ACT_TurnVacuumOn"/>
+</function_block>
+
+<action rdf:about="#ACT_TurnVacuumOff">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <rdf:type rdf:resource="#plant_process"/>
+</action>
+
+<action rdf:about="#ACT_TurnVacuumOn">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <rdf:type rdf:resource="#plant_process"/>
+</action>
+
+<function_block rdf:about="#Sc01_FB_Crane">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <has_action rdf:resource="#Reset_Timer"/>
+  <has_action rdf:resource="#Reset_Variables"/>
+  <has_action rdf:resource="#Set_Timer50ms"/>
+  <has_action rdf:resource="#Set_WPTypeEqualsStack"/>
+  <has_action rdf:resource="#TurnClockwise_AND_Timer8000ms"/>
+  <has_action rdf:resource="#TurnCounterclockwise_AND_Timer8000ms"/>
+  <has_action rdf:resource="#TurnVacuumOn_AND_Timer2000ms"/>
+  <has_action rdf:resource="#ACT_MoveToRamp"/>
+  <has_action rdf:resource="#ACT_MoveToStack"/>
+  <has_action rdf:resource="#ACT_PickUpWP"/>
+  <has_action rdf:resource="#ACT_PutDownWP"/>
+  <has_action rdf:resource="#ACT_AutomaticExecute"/>
+  <has_action rdf:resource="#ACT_EmergencyStop"/>
+  <has_action rdf:resource="#ACT_Init"/>
+</function_block>
+
+<action rdf:about="#Reset_Timer">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <rdf:type rdf:resource="#plant_process"/>
+</action>
+
+<action rdf:about="#Reset_Variables">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <rdf:type rdf:resource="#plant_process"/>
+</action>
+
+<action rdf:about="#Set_Timer50ms">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <rdf:type rdf:resource="#plant_process"/>
+</action>
+
+<action rdf:about="#Set_WPTypeEqualsStack">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <rdf:type rdf:resource="#plant_process"/>
+</action>
+
+<action rdf:about="#TurnClockwise_AND_Timer8000ms">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <rdf:type rdf:resource="#plant_process"/>
+</action>
+
+<action rdf:about="#TurnCounterclockwise_AND_Timer8000ms">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <rdf:type rdf:resource="#plant_process"/>
+</action>
+
+<action rdf:about="#TurnVacuumOn_AND_Timer2000ms">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <rdf:type rdf:resource="#plant_process"/>
+</action>
+
+<action rdf:about="#ACT_MoveToRamp">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <rdf:type rdf:resource="#plant_process"/>
+</action>
+
+<action rdf:about="#ACT_MoveToStack">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <rdf:type rdf:resource="#plant_process"/>
+</action>
+
+<action rdf:about="#ACT_PickUpWP">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <rdf:type rdf:resource="#plant_process"/>
+</action>
+
+<action rdf:about="#ACT_PutDownWP">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <rdf:type rdf:resource="#plant_process"/>
+</action>
+
+<action rdf:about="#ACT_AutomaticExecute">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <rdf:type rdf:resource="#plant_process"/>
+</action>
+
+<action rdf:about="#ACT_EmergencyStop">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <rdf:type rdf:resource="#plant_process"/>
+</action>
+
+<action rdf:about="#ACT_Init">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <rdf:type rdf:resource="#plant_process"/>
+</action>
+
+<function_block rdf:about="#Sc01_FB_Stack">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <has_action rdf:resource="#Reset_Timer"/>
+  <has_action rdf:resource="#Reset_Variables"/>
+  <has_action rdf:resource="#Set_Timer250ms"/>
+  <has_action rdf:resource="#Set_WPParameters_AND_WPProvided"/>
+  <has_action rdf:resource="#ACT_ProvideWP"/>
+  <has_action rdf:resource="#ACT_AutomaticExecute"/>
+  <has_action rdf:resource="#ACT_EmergencyStop"/>
+  <has_action rdf:resource="#ACT_Init"/>
+</function_block>
+
+<action rdf:about="#Set_Timer250ms">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <rdf:type rdf:resource="#plant_process"/>
+</action>
+
+<action rdf:about="#Set_WPParameters_AND_WPProvided">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <rdf:type rdf:resource="#plant_process"/>
+</action>
+
+<action rdf:about="#ACT_ProvideWP">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <rdf:type rdf:resource="#plant_process"/>
+</action>
+
+<function_block rdf:about="#Sc01_FB_PPU">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <has_action rdf:resource="#ACT_CheckEmergency"/>
+  <has_action rdf:resource="#ACT_Start"/>
+  <has_action rdf:resource="#AutomaticExecute_entry"/>
+  <has_action rdf:resource="#CallAll_AutomationExecutes"/>
+  <has_action rdf:resource="#EmergencyStop_entry"/>
+  <has_action rdf:resource="#Init_entry"/>
+  <has_action rdf:resource="#Ready_To_Initialise_active"/>
+  <has_action rdf:resource="#SFC_Reset_active"/>
+  <has_action rdf:resource="#SFC_Reset_entry"/>
+  <has_action rdf:resource="#SFC_Reset_Reset_active"/>
+  <has_action rdf:resource="#SFC_Reset_Reset_entry"/>
+  <has_action rdf:resource="#SFC_Reset_Reset_exit"/>
+  <has_action rdf:resource="#ACT_AutomaticExecute"/>
+  <has_action rdf:resource="#ACT_EmergencyStop"/>
+  <has_action rdf:resource="#ACT_Init"/>
+</function_block>
+
+<action rdf:about="#ACT_CheckEmergency">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <rdf:type rdf:resource="#plant_process"/>
+</action>
+
+<action rdf:about="#ACT_Start">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <rdf:type rdf:resource="#plant_process"/>
+</action>
+
+<action rdf:about="#AutomaticExecute_entry">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <rdf:type rdf:resource="#plant_process"/>
+</action>
+
+<action rdf:about="#CallAll_AutomationExecutes">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <rdf:type rdf:resource="#plant_process"/>
+</action>
+
+<action rdf:about="#EmergencyStop_entry">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <rdf:type rdf:resource="#plant_process"/>
+</action>
+
+<action rdf:about="#Init_entry">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <rdf:type rdf:resource="#plant_process"/>
+</action>
+
+<action rdf:about="#Ready_To_Initialise_active">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <rdf:type rdf:resource="#plant_process"/>
+</action>
+
+<action rdf:about="#SFC_Reset_active">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <rdf:type rdf:resource="#plant_process"/>
+</action>
+
+<action rdf:about="#SFC_Reset_entry">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <rdf:type rdf:resource="#plant_process"/>
+</action>
+
+<action rdf:about="#SFC_Reset_Reset_active">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <rdf:type rdf:resource="#plant_process"/>
+</action>
+
+<action rdf:about="#SFC_Reset_Reset_entry">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <rdf:type rdf:resource="#plant_process"/>
+</action>
+
+<action rdf:about="#SFC_Reset_Reset_exit">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <rdf:type rdf:resource="#plant_process"/>
+</action>
+
+<plc rdf:about="#xPPU_Sc02_PLCOpenXML">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <has_FB rdf:resource="#Sc02_FB_InductiveSensor"/>
+  <has_FB rdf:resource="#Sc02_FB_MicroSwitch"/>
+  <has_FB rdf:resource="#Sc02_FB_MonostableCylinder"/>
+  <has_FB rdf:resource="#Sc02_FB_Motor"/>
+  <has_FB rdf:resource="#Sc02_FB_OperationPanel"/>
+  <has_FB rdf:resource="#Sc02_FB_TurningTable"/>
+  <has_FB rdf:resource="#Sc02_FB_VacuumGripper"/>
+  <has_FB rdf:resource="#Sc02_FB_VacuumSwitch"/>
+  <has_FB rdf:resource="#Sc02_FB_Valve"/>
+  <has_FB rdf:resource="#Sc02_FB_Crane"/>
+  <has_FB rdf:resource="#Sc02_FB_Stack"/>
+  <has_FB rdf:resource="#Sc02_FB_PPU"/>
+  <has_FB rdf:resource="#Sc03_FB_InductiveSensor"/>
+  <has_FB rdf:resource="#Sc03_FB_MicroSwitch"/>
+  <has_FB rdf:resource="#Sc03_FB_MonostableCylinder"/>
+  <has_FB rdf:resource="#Sc03_FB_Motor"/>
+  <has_FB rdf:resource="#Sc03_FB_OperationPanel"/>
+  <has_FB rdf:resource="#Sc03_FB_TurningTable"/>
+  <has_FB rdf:resource="#Sc03_FB_VacuumGripper"/>
+  <has_FB rdf:resource="#Sc03_FB_VacuumSwitch"/>
+  <has_FB rdf:resource="#Sc03_FB_Valve"/>
+  <has_FB rdf:resource="#Sc03_FB_Crane"/>
+  <has_FB rdf:resource="#Sc03_FB_Stack"/>
+  <has_FB rdf:resource="#Sc03_FB_PPU"/>
+  <has_FB rdf:resource="#Sc04_FB_InductiveSensor"/>
+  <has_FB rdf:resource="#Sc04_FB_MicroSwitch"/>
+  <has_FB rdf:resource="#Sc04_FB_MonostableCylinder"/>
+  <has_FB rdf:resource="#Sc04_FB_Motor"/>
+  <has_FB rdf:resource="#Sc04_FB_OperationPanel"/>
+  <has_FB rdf:resource="#Sc04_FB_TurningTable"/>
+  <has_FB rdf:resource="#Sc04_FB_VacuumGripper"/>
+  <has_FB rdf:resource="#Sc04_FB_VacuumSwitch"/>
+  <has_FB rdf:resource="#Sc04_FB_Valve"/>
+  <has_FB rdf:resource="#Sc04_FB_Crane"/>
+  <has_FB rdf:resource="#Sc04_FB_Stack"/>
+  <has_FB rdf:resource="#Sc04_FB_PPU"/>
+  <has_FB rdf:resource="#Sc05_FB_InductiveSensor"/>
+  <has_FB rdf:resource="#Sc05_FB_MicroSwitch"/>
+  <has_FB rdf:resource="#Sc05_FB_MonostableCylinder"/>
+  <has_FB rdf:resource="#Sc05_FB_Motor"/>
+  <has_FB rdf:resource="#Sc05_FB_OperationPanel"/>
+  <has_FB rdf:resource="#Sc05_FB_TurningTable"/>
+  <has_FB rdf:resource="#Sc05_FB_VacuumGripper"/>
+  <has_FB rdf:resource="#Sc05_FB_VacuumSwitch"/>
+  <has_FB rdf:resource="#Sc05_FB_Valve"/>
+  <has_FB rdf:resource="#Sc05_FB_Crane"/>
+  <has_FB rdf:resource="#Sc05_FB_Stack"/>
+  <has_FB rdf:resource="#Sc05_FB_PPU"/>
+  <has_FB rdf:resource="#Sc06_FB_InductiveSensor"/>
+  <has_FB rdf:resource="#Sc06_FB_MicroSwitch"/>
+  <has_FB rdf:resource="#Sc06_FB_MonostableCylinder"/>
+  <has_FB rdf:resource="#Sc06_FB_Motor"/>
+  <has_FB rdf:resource="#Sc06_FB_OperationPanel"/>
+  <has_FB rdf:resource="#Sc06_FB_TurningTable"/>
+  <has_FB rdf:resource="#Sc06_FB_VacuumGripper"/>
+  <has_FB rdf:resource="#Sc06_FB_VacuumSwitch"/>
+  <has_FB rdf:resource="#Sc06_FB_Valve"/>
+  <has_FB rdf:resource="#Sc06_FB_Crane"/>
+  <has_FB rdf:resource="#Sc06_FB_Stack"/>
+  <has_FB rdf:resource="#Sc06_FB_PPU"/>
+  <has_FB rdf:resource="#Sc07_FB_InductiveSensor"/>
+  <has_FB rdf:resource="#Sc07_FB_MicroSwitch"/>
+  <has_FB rdf:resource="#Sc07_FB_MonostableCylinder"/>
+  <has_FB rdf:resource="#Sc07_FB_Motor"/>
+  <has_FB rdf:resource="#Sc07_FB_OperationPanel"/>
+  <has_FB rdf:resource="#Sc07_FB_TurningTable"/>
+  <has_FB rdf:resource="#Sc07_FB_VacuumGripper"/>
+  <has_FB rdf:resource="#Sc07_FB_VacuumSwitch"/>
+  <has_FB rdf:resource="#Sc07_FB_Valve"/>
+  <has_FB rdf:resource="#Sc07_FB_Crane"/>
+  <has_FB rdf:resource="#Sc07_FB_Stack"/>
+  <has_FB rdf:resource="#Sc07_FB_PPU"/>
+  <has_FB rdf:resource="#Sc08_FB_InductiveSensor"/>
+  <has_FB rdf:resource="#Sc08_FB_MicroSwitch"/>
+  <has_FB rdf:resource="#Sc08_FB_MonostableCylinder"/>
+  <has_FB rdf:resource="#Sc08_FB_Motor"/>
+  <has_FB rdf:resource="#Sc08_FB_OperationPanel"/>
+  <has_FB rdf:resource="#Sc08_FB_TurningTable"/>
+  <has_FB rdf:resource="#Sc08_FB_VacuumGripper"/>
+  <has_FB rdf:resource="#Sc08_FB_VacuumSwitch"/>
+  <has_FB rdf:resource="#Sc08_FB_Valve"/>
+  <has_FB rdf:resource="#Sc08_FB_Crane"/>
+  <has_FB rdf:resource="#Sc08_FB_Stack"/>
+  <has_FB rdf:resource="#Sc08_FB_PPU"/>
+  <has_FB rdf:resource="#Sc09_FB_InductiveSensor"/>
+  <has_FB rdf:resource="#Sc09_FB_MicroSwitch"/>
+  <has_FB rdf:resource="#Sc09_FB_MonostableCylinder"/>
+  <has_FB rdf:resource="#Sc09_FB_Motor"/>
+  <has_FB rdf:resource="#Sc09_FB_OperationPanel"/>
+  <has_FB rdf:resource="#Sc09_FB_TurningTable"/>
+  <has_FB rdf:resource="#Sc09_FB_VacuumGripper"/>
+  <has_FB rdf:resource="#Sc09_FB_VacuumSwitch"/>
+  <has_FB rdf:resource="#Sc09_FB_Valve"/>
+  <has_FB rdf:resource="#Sc09_FB_Crane"/>
+  <has_FB rdf:resource="#Sc09_FB_Stack"/>
+  <has_FB rdf:resource="#Sc09_FB_PPU"/>
+  <has_FB rdf:resource="#Sc10_FB_InductiveSensor"/>
+  <has_FB rdf:resource="#Sc10_FB_MicroSwitch"/>
+  <has_FB rdf:resource="#Sc10_FB_MonostableCylinder"/>
+  <has_FB rdf:resource="#Sc10_FB_Motor"/>
+  <has_FB rdf:resource="#Sc10_FB_OperationPanel"/>
+  <has_FB rdf:resource="#Sc10_FB_TurningTable"/>
+  <has_FB rdf:resource="#Sc10_FB_VacuumGripper"/>
+  <has_FB rdf:resource="#Sc10_FB_VacuumSwitch"/>
+  <has_FB rdf:resource="#Sc10_FB_Valve"/>
+  <has_FB rdf:resource="#Sc10_FB_Crane"/>
+  <has_FB rdf:resource="#Sc10_FB_Stack"/>
+  <has_FB rdf:resource="#Sc10_FB_PPU"/>
+  <has_FB rdf:resource="#Sc11_FB_InductiveSensor"/>
+  <has_FB rdf:resource="#Sc11_FB_MicroSwitch"/>
+  <has_FB rdf:resource="#Sc11_FB_MonostableCylinder"/>
+  <has_FB rdf:resource="#Sc11_FB_Motor"/>
+  <has_FB rdf:resource="#Sc11_FB_OperationPanel"/>
+  <has_FB rdf:resource="#Sc11_FB_TurningTable"/>
+  <has_FB rdf:resource="#Sc11_FB_VacuumGripper"/>
+  <has_FB rdf:resource="#Sc11_FB_VacuumSwitch"/>
+  <has_FB rdf:resource="#Sc11_FB_Valve"/>
+  <has_FB rdf:resource="#Sc11_FB_Crane"/>
+  <has_FB rdf:resource="#Sc11_FB_Stack"/>
+  <has_FB rdf:resource="#Sc11_FB_PPU"/>
+  <has_FB rdf:resource="#Sc12_FB_InductiveSensor"/>
+  <has_FB rdf:resource="#Sc12_FB_MicroSwitch"/>
+  <has_FB rdf:resource="#Sc12_FB_MonostableCylinder"/>
+  <has_FB rdf:resource="#Sc12_FB_Motor"/>
+  <has_FB rdf:resource="#Sc12_FB_OperationPanel"/>
+  <has_FB rdf:resource="#Sc12_FB_TurningTable"/>
+  <has_FB rdf:resource="#Sc12_FB_VacuumGripper"/>
+  <has_FB rdf:resource="#Sc12_FB_VacuumSwitch"/>
+  <has_FB rdf:resource="#Sc12_FB_Valve"/>
+  <has_FB rdf:resource="#Sc12_FB_Crane"/>
+  <has_FB rdf:resource="#Sc12_FB_Stack"/>
+  <has_FB rdf:resource="#Sc12_FB_PPU"/>
+  <has_FB rdf:resource="#Sc13_FB_InductiveSensor"/>
+  <has_FB rdf:resource="#Sc13_FB_MicroSwitch"/>
+  <has_FB rdf:resource="#Sc13_FB_MonostableCylinder"/>
+  <has_FB rdf:resource="#Sc13_FB_Motor"/>
+  <has_FB rdf:resource="#Sc13_FB_OperationPanel"/>
+  <has_FB rdf:resource="#Sc13_FB_TurningTable"/>
+  <has_FB rdf:resource="#Sc13_FB_VacuumGripper"/>
+  <has_FB rdf:resource="#Sc13_FB_VacuumSwitch"/>
+  <has_FB rdf:resource="#Sc13_FB_Valve"/>
+  <has_FB rdf:resource="#Sc13_FB_Crane"/>
+  <has_FB rdf:resource="#Sc13_FB_Stack"/>
+  <has_FB rdf:resource="#Sc13_FB_PPU"/>
+  <has_FB rdf:resource="#Sc14_FB_InductiveSensor"/>
+  <has_FB rdf:resource="#Sc14_FB_MicroSwitch"/>
+  <has_FB rdf:resource="#Sc14_FB_MonostableCylinder"/>
+  <has_FB rdf:resource="#Sc14_FB_Motor"/>
+  <has_FB rdf:resource="#Sc14_FB_OperationPanel"/>
+  <has_FB rdf:resource="#Sc14_FB_TurningTable"/>
+  <has_FB rdf:resource="#Sc14_FB_VacuumGripper"/>
+  <has_FB rdf:resource="#Sc14_FB_VacuumSwitch"/>
+  <has_FB rdf:resource="#Sc14_FB_Valve"/>
+  <has_FB rdf:resource="#Sc14_FB_Crane"/>
+  <has_FB rdf:resource="#Sc14_FB_Stack"/>
+  <has_FB rdf:resource="#Sc14_FB_PPU"/>
+</plc>
+
+<function_block rdf:about="#Sc02_FB_InductiveSensor">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+</function_block>
+
+<function_block rdf:about="#Sc02_FB_MicroSwitch">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+</function_block>
+
+<function_block rdf:about="#Sc02_FB_MonostableCylinder">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <has_action rdf:resource="#ACT_Extend"/>
+  <has_action rdf:resource="#ACT_Retract"/>
+</function_block>
+
+<function_block rdf:about="#Sc02_FB_Motor">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <has_action rdf:resource="#ACT_Stop"/>
+  <has_action rdf:resource="#ACT_TurnClockwise"/>
+  <has_action rdf:resource="#ACT_TurnCounterclockwise"/>
+</function_block>
+
+<function_block rdf:about="#Sc02_FB_OperationPanel">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <has_action rdf:resource="#ACT_TurnLampGreen_Off"/>
+  <has_action rdf:resource="#ACT_TurnLampGreen_On"/>
+  <has_action rdf:resource="#ACT_TurnLampWhite_Off"/>
+  <has_action rdf:resource="#ACT_TurnLampWhite_On"/>
+</function_block>
+
+<function_block rdf:about="#Sc02_FB_TurningTable">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+</function_block>
+
+<function_block rdf:about="#Sc02_FB_VacuumGripper">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <has_action rdf:resource="#ACT_Intake"/>
+  <has_action rdf:resource="#ACT_Release"/>
+</function_block>
+
+<function_block rdf:about="#Sc02_FB_VacuumSwitch">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+</function_block>
+
+<function_block rdf:about="#Sc02_FB_Valve">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <has_action rdf:resource="#ACT_TurnVacuumOff"/>
+  <has_action rdf:resource="#ACT_TurnVacuumOn"/>
+</function_block>
+
+<function_block rdf:about="#Sc02_FB_Crane">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <has_action rdf:resource="#Reset_Timer"/>
+  <has_action rdf:resource="#Reset_Variables"/>
+  <has_action rdf:resource="#Set_Timer50ms"/>
+  <has_action rdf:resource="#Set_WPTypeEqualsStack"/>
+  <has_action rdf:resource="#TurnClockwise_AND_Timer8000ms"/>
+  <has_action rdf:resource="#TurnCounterclockwise_AND_Timer8000ms"/>
+  <has_action rdf:resource="#TurnVacuumOn_AND_Timer2000ms"/>
+  <has_action rdf:resource="#ACT_MoveToRamp"/>
+  <has_action rdf:resource="#ACT_MoveToStack"/>
+  <has_action rdf:resource="#ACT_PickUpWP"/>
+  <has_action rdf:resource="#ACT_PutDownWP"/>
+  <has_action rdf:resource="#ACT_AutomaticExecute"/>
+  <has_action rdf:resource="#ACT_EmergencyStop"/>
+  <has_action rdf:resource="#ACT_Init"/>
+</function_block>
+
+<function_block rdf:about="#Sc02_FB_Stack">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <has_action rdf:resource="#Reset_Timer"/>
+  <has_action rdf:resource="#Reset_Variables"/>
+  <has_action rdf:resource="#Set_Timer250ms"/>
+  <has_action rdf:resource="#Set_WPParameters_AND_WPProvided"/>
+  <has_action rdf:resource="#ACT_ProvideWP"/>
+  <has_action rdf:resource="#ACT_AutomaticExecute"/>
+  <has_action rdf:resource="#ACT_EmergencyStop"/>
+  <has_action rdf:resource="#ACT_Init"/>
+</function_block>
+
+<function_block rdf:about="#Sc02_FB_PPU">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <has_action rdf:resource="#ACT_CheckEmergency"/>
+  <has_action rdf:resource="#ACT_Start"/>
+  <has_action rdf:resource="#AutomaticExecute_entry"/>
+  <has_action rdf:resource="#CallAll_AutomationExecutes"/>
+  <has_action rdf:resource="#EmergencyStop_entry"/>
+  <has_action rdf:resource="#Init_entry"/>
+  <has_action rdf:resource="#Ready_To_Initialise_active"/>
+  <has_action rdf:resource="#SFC_Reset_active"/>
+  <has_action rdf:resource="#SFC_Reset_entry"/>
+  <has_action rdf:resource="#SFC_Reset_Reset_active"/>
+  <has_action rdf:resource="#SFC_Reset_Reset_entry"/>
+  <has_action rdf:resource="#SFC_Reset_Reset_exit"/>
+  <has_action rdf:resource="#ACT_AutomaticExecute"/>
+  <has_action rdf:resource="#ACT_EmergencyStop"/>
+  <has_action rdf:resource="#ACT_Init"/>
+</function_block>
+
+<function_block rdf:about="#Sc03_FB_InductiveSensor">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+</function_block>
+
+<function_block rdf:about="#Sc03_FB_MicroSwitch">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+</function_block>
+
+<function_block rdf:about="#Sc03_FB_MonostableCylinder">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <has_action rdf:resource="#ACT_Extend"/>
+  <has_action rdf:resource="#ACT_Retract"/>
+</function_block>
+
+<function_block rdf:about="#Sc03_FB_Motor">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <has_action rdf:resource="#ACT_Stop"/>
+  <has_action rdf:resource="#ACT_TurnClockwise"/>
+  <has_action rdf:resource="#ACT_TurnCounterclockwise"/>
+</function_block>
+
+<function_block rdf:about="#Sc03_FB_OperationPanel">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <has_action rdf:resource="#ACT_TurnLampGreen_Off"/>
+  <has_action rdf:resource="#ACT_TurnLampGreen_On"/>
+  <has_action rdf:resource="#ACT_TurnLampWhite_Off"/>
+  <has_action rdf:resource="#ACT_TurnLampWhite_On"/>
+</function_block>
+
+<function_block rdf:about="#Sc03_FB_TurningTable">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+</function_block>
+
+<function_block rdf:about="#Sc03_FB_VacuumGripper">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <has_action rdf:resource="#ACT_Intake"/>
+  <has_action rdf:resource="#ACT_Release"/>
+</function_block>
+
+<function_block rdf:about="#Sc03_FB_VacuumSwitch">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+</function_block>
+
+<function_block rdf:about="#Sc03_FB_Valve">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <has_action rdf:resource="#ACT_TurnVacuumOff"/>
+  <has_action rdf:resource="#ACT_TurnVacuumOn"/>
+</function_block>
+
+<function_block rdf:about="#Sc03_FB_Crane">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <has_action rdf:resource="#Reset_Timer"/>
+  <has_action rdf:resource="#Reset_Variables"/>
+  <has_action rdf:resource="#Set_Timer50ms"/>
+  <has_action rdf:resource="#Set_WPTypeEqualsStack"/>
+  <has_action rdf:resource="#TurnClockwise_AND_Timer8000ms"/>
+  <has_action rdf:resource="#TurnCounterclockwise_AND_Timer8000ms"/>
+  <has_action rdf:resource="#TurnVacuumOn_AND_Timer2000ms"/>
+  <has_action rdf:resource="#ACT_MoveToRamp"/>
+  <has_action rdf:resource="#ACT_MoveToStack"/>
+  <has_action rdf:resource="#ACT_PickUpWP"/>
+  <has_action rdf:resource="#ACT_PutDownWP"/>
+  <has_action rdf:resource="#ACT_AutomaticExecute"/>
+  <has_action rdf:resource="#ACT_EmergencyStop"/>
+  <has_action rdf:resource="#ACT_Init"/>
+</function_block>
+
+<function_block rdf:about="#Sc03_FB_Stack">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <has_action rdf:resource="#Reset_Timer"/>
+  <has_action rdf:resource="#Reset_Variables"/>
+  <has_action rdf:resource="#Set_Timer250ms"/>
+  <has_action rdf:resource="#Set_WPParameters_AND_WPProvided"/>
+  <has_action rdf:resource="#ACT_ProvideWP"/>
+  <has_action rdf:resource="#ACT_AutomaticExecute"/>
+  <has_action rdf:resource="#ACT_EmergencyStop"/>
+  <has_action rdf:resource="#ACT_Init"/>
+</function_block>
+
+<function_block rdf:about="#Sc03_FB_PPU">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <has_action rdf:resource="#ACT_CheckEmergency"/>
+  <has_action rdf:resource="#ACT_Start"/>
+  <has_action rdf:resource="#AutomaticExecute_entry"/>
+  <has_action rdf:resource="#CallAll_AutomationExecutes"/>
+  <has_action rdf:resource="#EmergencyStop_entry"/>
+  <has_action rdf:resource="#Init_entry"/>
+  <has_action rdf:resource="#Ready_To_Initialise_active"/>
+  <has_action rdf:resource="#SFC_Reset_active"/>
+  <has_action rdf:resource="#SFC_Reset_entry"/>
+  <has_action rdf:resource="#SFC_Reset_Reset_active"/>
+  <has_action rdf:resource="#SFC_Reset_Reset_entry"/>
+  <has_action rdf:resource="#SFC_Reset_Reset_exit"/>
+  <has_action rdf:resource="#ACT_AutomaticExecute"/>
+  <has_action rdf:resource="#ACT_EmergencyStop"/>
+  <has_action rdf:resource="#ACT_Init"/>
+</function_block>
+
+<function_block rdf:about="#Sc04_FB_InductiveSensor">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+</function_block>
+
+<function_block rdf:about="#Sc04_FB_MicroSwitch">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+</function_block>
+
+<function_block rdf:about="#Sc04_FB_MonostableCylinder">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <has_action rdf:resource="#ACT_Extend"/>
+  <has_action rdf:resource="#ACT_Retract"/>
+</function_block>
+
+<function_block rdf:about="#Sc04_FB_Motor">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <has_action rdf:resource="#ACT_Stop"/>
+  <has_action rdf:resource="#ACT_TurnClockwise"/>
+  <has_action rdf:resource="#ACT_TurnCounterclockwise"/>
+</function_block>
+
+<function_block rdf:about="#Sc04_FB_OperationPanel">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <has_action rdf:resource="#ACT_TurnLampGreen_Off"/>
+  <has_action rdf:resource="#ACT_TurnLampGreen_On"/>
+  <has_action rdf:resource="#ACT_TurnLampWhite_Off"/>
+  <has_action rdf:resource="#ACT_TurnLampWhite_On"/>
+</function_block>
+
+<function_block rdf:about="#Sc04_FB_TurningTable">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+</function_block>
+
+<function_block rdf:about="#Sc04_FB_VacuumGripper">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <has_action rdf:resource="#ACT_Intake"/>
+  <has_action rdf:resource="#ACT_Release"/>
+</function_block>
+
+<function_block rdf:about="#Sc04_FB_VacuumSwitch">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+</function_block>
+
+<function_block rdf:about="#Sc04_FB_Valve">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <has_action rdf:resource="#ACT_TurnVacuumOff"/>
+  <has_action rdf:resource="#ACT_TurnVacuumOn"/>
+</function_block>
+
+<function_block rdf:about="#Sc04_FB_Crane">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <has_action rdf:resource="#Reset_Timer"/>
+  <has_action rdf:resource="#Reset_Variables"/>
+  <has_action rdf:resource="#Set_Timer50ms"/>
+  <has_action rdf:resource="#Set_WPTypeEqualsStack"/>
+  <has_action rdf:resource="#TurnClockwise_AND_Timer8000ms"/>
+  <has_action rdf:resource="#TurnCounterclockwise_AND_Timer8000ms"/>
+  <has_action rdf:resource="#TurnVacuumOn_AND_Timer2000ms"/>
+  <has_action rdf:resource="#ACT_MoveToRamp"/>
+  <has_action rdf:resource="#ACT_MoveToStack"/>
+  <has_action rdf:resource="#ACT_PickUpWP"/>
+  <has_action rdf:resource="#ACT_PutDownWP"/>
+  <has_action rdf:resource="#ACT_AutomaticExecute"/>
+  <has_action rdf:resource="#ACT_EmergencyStop"/>
+  <has_action rdf:resource="#ACT_Init"/>
+</function_block>
+
+<function_block rdf:about="#Sc04_FB_Stack">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <has_action rdf:resource="#Reset_Timer"/>
+  <has_action rdf:resource="#Reset_Variables"/>
+  <has_action rdf:resource="#Set_Timer250ms"/>
+  <has_action rdf:resource="#Set_WPParameters_AND_WPProvided"/>
+  <has_action rdf:resource="#ACT_ProvideWP"/>
+  <has_action rdf:resource="#ACT_AutomaticExecute"/>
+  <has_action rdf:resource="#ACT_EmergencyStop"/>
+  <has_action rdf:resource="#ACT_Init"/>
+</function_block>
+
+<function_block rdf:about="#Sc04_FB_PPU">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <has_action rdf:resource="#ACT_CheckEmergency"/>
+  <has_action rdf:resource="#ACT_Start"/>
+  <has_action rdf:resource="#AutomaticExecute_entry"/>
+  <has_action rdf:resource="#CallAll_AutomationExecutes"/>
+  <has_action rdf:resource="#EmergencyStop_entry"/>
+  <has_action rdf:resource="#Init_entry"/>
+  <has_action rdf:resource="#Ready_To_Initialise_active"/>
+  <has_action rdf:resource="#SFC_Reset_active"/>
+  <has_action rdf:resource="#SFC_Reset_entry"/>
+  <has_action rdf:resource="#SFC_Reset_Reset_active"/>
+  <has_action rdf:resource="#SFC_Reset_Reset_entry"/>
+  <has_action rdf:resource="#SFC_Reset_Reset_exit"/>
+  <has_action rdf:resource="#ACT_AutomaticExecute"/>
+  <has_action rdf:resource="#ACT_EmergencyStop"/>
+  <has_action rdf:resource="#ACT_Init"/>
+</function_block>
+
+<function_block rdf:about="#Sc05_FB_InductiveSensor">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+</function_block>
+
+<function_block rdf:about="#Sc05_FB_MicroSwitch">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+</function_block>
+
+<function_block rdf:about="#Sc05_FB_MonostableCylinder">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <has_action rdf:resource="#ACT_Extend"/>
+  <has_action rdf:resource="#ACT_Retract"/>
+</function_block>
+
+<function_block rdf:about="#Sc05_FB_Motor">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <has_action rdf:resource="#ACT_Stop"/>
+  <has_action rdf:resource="#ACT_TurnClockwise"/>
+  <has_action rdf:resource="#ACT_TurnCounterclockwise"/>
+</function_block>
+
+<function_block rdf:about="#Sc05_FB_OperationPanel">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <has_action rdf:resource="#ACT_TurnLampGreen_Off"/>
+  <has_action rdf:resource="#ACT_TurnLampGreen_On"/>
+  <has_action rdf:resource="#ACT_TurnLampWhite_Off"/>
+  <has_action rdf:resource="#ACT_TurnLampWhite_On"/>
+</function_block>
+
+<function_block rdf:about="#Sc05_FB_TurningTable">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+</function_block>
+
+<function_block rdf:about="#Sc05_FB_VacuumGripper">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <has_action rdf:resource="#ACT_Intake"/>
+  <has_action rdf:resource="#ACT_Release"/>
+</function_block>
+
+<function_block rdf:about="#Sc05_FB_VacuumSwitch">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+</function_block>
+
+<function_block rdf:about="#Sc05_FB_Valve">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <has_action rdf:resource="#ACT_TurnVacuumOff"/>
+  <has_action rdf:resource="#ACT_TurnVacuumOn"/>
+</function_block>
+
+<function_block rdf:about="#Sc05_FB_Crane">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <has_action rdf:resource="#Reset_Timer"/>
+  <has_action rdf:resource="#Reset_Variables"/>
+  <has_action rdf:resource="#Set_Timer50ms"/>
+  <has_action rdf:resource="#Set_WPTypeEqualsStack"/>
+  <has_action rdf:resource="#TurnClockwise_AND_Timer8000ms"/>
+  <has_action rdf:resource="#TurnCounterclockwise_AND_Timer8000ms"/>
+  <has_action rdf:resource="#TurnVacuumOn_AND_Timer2000ms"/>
+  <has_action rdf:resource="#ACT_MoveToRamp"/>
+  <has_action rdf:resource="#ACT_MoveToStack"/>
+  <has_action rdf:resource="#ACT_PickUpWP"/>
+  <has_action rdf:resource="#ACT_PutDownWP"/>
+  <has_action rdf:resource="#ACT_AutomaticExecute"/>
+  <has_action rdf:resource="#ACT_EmergencyStop"/>
+  <has_action rdf:resource="#ACT_Init"/>
+</function_block>
+
+<function_block rdf:about="#Sc05_FB_Stack">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <has_action rdf:resource="#Reset_Timer"/>
+  <has_action rdf:resource="#Reset_Variables"/>
+  <has_action rdf:resource="#Set_Timer250ms"/>
+  <has_action rdf:resource="#Set_WPParameters_AND_WPProvided"/>
+  <has_action rdf:resource="#ACT_ProvideWP"/>
+  <has_action rdf:resource="#ACT_AutomaticExecute"/>
+  <has_action rdf:resource="#ACT_EmergencyStop"/>
+  <has_action rdf:resource="#ACT_Init"/>
+</function_block>
+
+<function_block rdf:about="#Sc05_FB_PPU">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <has_action rdf:resource="#ACT_CheckEmergency"/>
+  <has_action rdf:resource="#ACT_Start"/>
+  <has_action rdf:resource="#AutomaticExecute_entry"/>
+  <has_action rdf:resource="#CallAll_AutomationExecutes"/>
+  <has_action rdf:resource="#EmergencyStop_entry"/>
+  <has_action rdf:resource="#Init_entry"/>
+  <has_action rdf:resource="#Ready_To_Initialise_active"/>
+  <has_action rdf:resource="#SFC_Reset_active"/>
+  <has_action rdf:resource="#SFC_Reset_entry"/>
+  <has_action rdf:resource="#SFC_Reset_Reset_active"/>
+  <has_action rdf:resource="#SFC_Reset_Reset_entry"/>
+  <has_action rdf:resource="#SFC_Reset_Reset_exit"/>
+  <has_action rdf:resource="#ACT_AutomaticExecute"/>
+  <has_action rdf:resource="#ACT_EmergencyStop"/>
+  <has_action rdf:resource="#ACT_Init"/>
+</function_block>
+
+<function_block rdf:about="#Sc06_FB_InductiveSensor">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+</function_block>
+
+<function_block rdf:about="#Sc06_FB_MicroSwitch">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+</function_block>
+
+<function_block rdf:about="#Sc06_FB_MonostableCylinder">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <has_action rdf:resource="#ACT_Extend"/>
+  <has_action rdf:resource="#ACT_Retract"/>
+</function_block>
+
+<function_block rdf:about="#Sc06_FB_Motor">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <has_action rdf:resource="#ACT_Stop"/>
+  <has_action rdf:resource="#ACT_TurnClockwise"/>
+  <has_action rdf:resource="#ACT_TurnCounterclockwise"/>
+</function_block>
+
+<function_block rdf:about="#Sc06_FB_OperationPanel">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <has_action rdf:resource="#ACT_TurnLampGreen_Off"/>
+  <has_action rdf:resource="#ACT_TurnLampGreen_On"/>
+  <has_action rdf:resource="#ACT_TurnLampWhite_Off"/>
+  <has_action rdf:resource="#ACT_TurnLampWhite_On"/>
+</function_block>
+
+<function_block rdf:about="#Sc06_FB_TurningTable">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+</function_block>
+
+<function_block rdf:about="#Sc06_FB_VacuumGripper">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <has_action rdf:resource="#ACT_Intake"/>
+  <has_action rdf:resource="#ACT_Release"/>
+</function_block>
+
+<function_block rdf:about="#Sc06_FB_VacuumSwitch">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+</function_block>
+
+<function_block rdf:about="#Sc06_FB_Valve">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <has_action rdf:resource="#ACT_TurnVacuumOff"/>
+  <has_action rdf:resource="#ACT_TurnVacuumOn"/>
+</function_block>
+
+<function_block rdf:about="#Sc06_FB_Crane">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <has_action rdf:resource="#Reset_Timer"/>
+  <has_action rdf:resource="#Reset_Variables"/>
+  <has_action rdf:resource="#Set_Timer50ms"/>
+  <has_action rdf:resource="#Set_WPTypeEqualsStack"/>
+  <has_action rdf:resource="#TurnClockwise_AND_Timer8000ms"/>
+  <has_action rdf:resource="#TurnCounterclockwise_AND_Timer8000ms"/>
+  <has_action rdf:resource="#TurnVacuumOn_AND_Timer2000ms"/>
+  <has_action rdf:resource="#ACT_MoveToRamp"/>
+  <has_action rdf:resource="#ACT_MoveToStack"/>
+  <has_action rdf:resource="#ACT_PickUpWP"/>
+  <has_action rdf:resource="#ACT_PutDownWP"/>
+  <has_action rdf:resource="#ACT_AutomaticExecute"/>
+  <has_action rdf:resource="#ACT_EmergencyStop"/>
+  <has_action rdf:resource="#ACT_Init"/>
+</function_block>
+
+<function_block rdf:about="#Sc06_FB_Stack">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <has_action rdf:resource="#Reset_Timer"/>
+  <has_action rdf:resource="#Reset_Variables"/>
+  <has_action rdf:resource="#Set_Timer250ms"/>
+  <has_action rdf:resource="#Set_WPParameters_AND_WPProvided"/>
+  <has_action rdf:resource="#ACT_ProvideWP"/>
+  <has_action rdf:resource="#ACT_AutomaticExecute"/>
+  <has_action rdf:resource="#ACT_EmergencyStop"/>
+  <has_action rdf:resource="#ACT_Init"/>
+</function_block>
+
+<function_block rdf:about="#Sc06_FB_PPU">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <has_action rdf:resource="#ACT_CheckEmergency"/>
+  <has_action rdf:resource="#ACT_Start"/>
+  <has_action rdf:resource="#AutomaticExecute_entry"/>
+  <has_action rdf:resource="#CallAll_AutomationExecutes"/>
+  <has_action rdf:resource="#EmergencyStop_entry"/>
+  <has_action rdf:resource="#Init_entry"/>
+  <has_action rdf:resource="#Ready_To_Initialise_active"/>
+  <has_action rdf:resource="#SFC_Reset_active"/>
+  <has_action rdf:resource="#SFC_Reset_entry"/>
+  <has_action rdf:resource="#SFC_Reset_Reset_active"/>
+  <has_action rdf:resource="#SFC_Reset_Reset_entry"/>
+  <has_action rdf:resource="#SFC_Reset_Reset_exit"/>
+  <has_action rdf:resource="#ACT_AutomaticExecute"/>
+  <has_action rdf:resource="#ACT_EmergencyStop"/>
+  <has_action rdf:resource="#ACT_Init"/>
+</function_block>
+
+<function_block rdf:about="#Sc07_FB_InductiveSensor">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+</function_block>
+
+<function_block rdf:about="#Sc07_FB_MicroSwitch">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+</function_block>
+
+<function_block rdf:about="#Sc07_FB_MonostableCylinder">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <has_action rdf:resource="#ACT_Extend"/>
+  <has_action rdf:resource="#ACT_Retract"/>
+</function_block>
+
+<function_block rdf:about="#Sc07_FB_Motor">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <has_action rdf:resource="#ACT_Stop"/>
+  <has_action rdf:resource="#ACT_TurnClockwise"/>
+  <has_action rdf:resource="#ACT_TurnCounterclockwise"/>
+</function_block>
+
+<function_block rdf:about="#Sc07_FB_OperationPanel">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <has_action rdf:resource="#ACT_TurnLampGreen_Off"/>
+  <has_action rdf:resource="#ACT_TurnLampGreen_On"/>
+  <has_action rdf:resource="#ACT_TurnLampWhite_Off"/>
+  <has_action rdf:resource="#ACT_TurnLampWhite_On"/>
+</function_block>
+
+<function_block rdf:about="#Sc07_FB_TurningTable">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+</function_block>
+
+<function_block rdf:about="#Sc07_FB_VacuumGripper">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <has_action rdf:resource="#ACT_Intake"/>
+  <has_action rdf:resource="#ACT_Release"/>
+</function_block>
+
+<function_block rdf:about="#Sc07_FB_VacuumSwitch">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+</function_block>
+
+<function_block rdf:about="#Sc07_FB_Valve">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <has_action rdf:resource="#ACT_TurnVacuumOff"/>
+  <has_action rdf:resource="#ACT_TurnVacuumOn"/>
+</function_block>
+
+<function_block rdf:about="#Sc07_FB_Crane">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <has_action rdf:resource="#Reset_Timer"/>
+  <has_action rdf:resource="#Reset_Variables"/>
+  <has_action rdf:resource="#Set_Timer50ms"/>
+  <has_action rdf:resource="#Set_WPTypeEqualsStack"/>
+  <has_action rdf:resource="#TurnClockwise_AND_Timer8000ms"/>
+  <has_action rdf:resource="#TurnCounterclockwise_AND_Timer8000ms"/>
+  <has_action rdf:resource="#TurnVacuumOn_AND_Timer2000ms"/>
+  <has_action rdf:resource="#ACT_MoveToRamp"/>
+  <has_action rdf:resource="#ACT_MoveToStack"/>
+  <has_action rdf:resource="#ACT_PickUpWP"/>
+  <has_action rdf:resource="#ACT_PutDownWP"/>
+  <has_action rdf:resource="#ACT_AutomaticExecute"/>
+  <has_action rdf:resource="#ACT_EmergencyStop"/>
+  <has_action rdf:resource="#ACT_Init"/>
+</function_block>
+
+<function_block rdf:about="#Sc07_FB_Stack">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <has_action rdf:resource="#Reset_Timer"/>
+  <has_action rdf:resource="#Reset_Variables"/>
+  <has_action rdf:resource="#Set_Timer250ms"/>
+  <has_action rdf:resource="#Set_WPParameters_AND_WPProvided"/>
+  <has_action rdf:resource="#ACT_ProvideWP"/>
+  <has_action rdf:resource="#ACT_AutomaticExecute"/>
+  <has_action rdf:resource="#ACT_EmergencyStop"/>
+  <has_action rdf:resource="#ACT_Init"/>
+</function_block>
+
+<function_block rdf:about="#Sc07_FB_PPU">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <has_action rdf:resource="#ACT_CheckEmergency"/>
+  <has_action rdf:resource="#ACT_Start"/>
+  <has_action rdf:resource="#AutomaticExecute_entry"/>
+  <has_action rdf:resource="#CallAll_AutomationExecutes"/>
+  <has_action rdf:resource="#EmergencyStop_entry"/>
+  <has_action rdf:resource="#Init_entry"/>
+  <has_action rdf:resource="#Ready_To_Initialise_active"/>
+  <has_action rdf:resource="#SFC_Reset_active"/>
+  <has_action rdf:resource="#SFC_Reset_entry"/>
+  <has_action rdf:resource="#SFC_Reset_Reset_active"/>
+  <has_action rdf:resource="#SFC_Reset_Reset_entry"/>
+  <has_action rdf:resource="#SFC_Reset_Reset_exit"/>
+  <has_action rdf:resource="#ACT_AutomaticExecute"/>
+  <has_action rdf:resource="#ACT_EmergencyStop"/>
+  <has_action rdf:resource="#ACT_Init"/>
+</function_block>
+
+<function_block rdf:about="#Sc08_FB_InductiveSensor">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+</function_block>
+
+<function_block rdf:about="#Sc08_FB_MicroSwitch">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+</function_block>
+
+<function_block rdf:about="#Sc08_FB_MonostableCylinder">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <has_action rdf:resource="#ACT_Extend"/>
+  <has_action rdf:resource="#ACT_Retract"/>
+</function_block>
+
+<function_block rdf:about="#Sc08_FB_Motor">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <has_action rdf:resource="#ACT_Stop"/>
+  <has_action rdf:resource="#ACT_TurnClockwise"/>
+  <has_action rdf:resource="#ACT_TurnCounterclockwise"/>
+</function_block>
+
+<function_block rdf:about="#Sc08_FB_OperationPanel">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <has_action rdf:resource="#ACT_TurnLampGreen_Off"/>
+  <has_action rdf:resource="#ACT_TurnLampGreen_On"/>
+  <has_action rdf:resource="#ACT_TurnLampWhite_Off"/>
+  <has_action rdf:resource="#ACT_TurnLampWhite_On"/>
+</function_block>
+
+<function_block rdf:about="#Sc08_FB_TurningTable">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+</function_block>
+
+<function_block rdf:about="#Sc08_FB_VacuumGripper">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <has_action rdf:resource="#ACT_Intake"/>
+  <has_action rdf:resource="#ACT_Release"/>
+</function_block>
+
+<function_block rdf:about="#Sc08_FB_VacuumSwitch">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+</function_block>
+
+<function_block rdf:about="#Sc08_FB_Valve">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <has_action rdf:resource="#ACT_TurnVacuumOff"/>
+  <has_action rdf:resource="#ACT_TurnVacuumOn"/>
+</function_block>
+
+<function_block rdf:about="#Sc08_FB_Crane">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <has_action rdf:resource="#Reset_Timer"/>
+  <has_action rdf:resource="#Reset_Variables"/>
+  <has_action rdf:resource="#Set_Timer50ms"/>
+  <has_action rdf:resource="#Set_WPTypeEqualsStack"/>
+  <has_action rdf:resource="#TurnClockwise_AND_Timer8000ms"/>
+  <has_action rdf:resource="#TurnCounterclockwise_AND_Timer8000ms"/>
+  <has_action rdf:resource="#TurnVacuumOn_AND_Timer2000ms"/>
+  <has_action rdf:resource="#ACT_MoveToRamp"/>
+  <has_action rdf:resource="#ACT_MoveToStack"/>
+  <has_action rdf:resource="#ACT_PickUpWP"/>
+  <has_action rdf:resource="#ACT_PutDownWP"/>
+  <has_action rdf:resource="#ACT_AutomaticExecute"/>
+  <has_action rdf:resource="#ACT_EmergencyStop"/>
+  <has_action rdf:resource="#ACT_Init"/>
+</function_block>
+
+<function_block rdf:about="#Sc08_FB_Stack">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <has_action rdf:resource="#Reset_Timer"/>
+  <has_action rdf:resource="#Reset_Variables"/>
+  <has_action rdf:resource="#Set_Timer250ms"/>
+  <has_action rdf:resource="#Set_WPParameters_AND_WPProvided"/>
+  <has_action rdf:resource="#ACT_ProvideWP"/>
+  <has_action rdf:resource="#ACT_AutomaticExecute"/>
+  <has_action rdf:resource="#ACT_EmergencyStop"/>
+  <has_action rdf:resource="#ACT_Init"/>
+</function_block>
+
+<function_block rdf:about="#Sc08_FB_PPU">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <has_action rdf:resource="#ACT_CheckEmergency"/>
+  <has_action rdf:resource="#ACT_Start"/>
+  <has_action rdf:resource="#AutomaticExecute_entry"/>
+  <has_action rdf:resource="#CallAll_AutomationExecutes"/>
+  <has_action rdf:resource="#EmergencyStop_entry"/>
+  <has_action rdf:resource="#Init_entry"/>
+  <has_action rdf:resource="#Ready_To_Initialise_active"/>
+  <has_action rdf:resource="#SFC_Reset_active"/>
+  <has_action rdf:resource="#SFC_Reset_entry"/>
+  <has_action rdf:resource="#SFC_Reset_Reset_active"/>
+  <has_action rdf:resource="#SFC_Reset_Reset_entry"/>
+  <has_action rdf:resource="#SFC_Reset_Reset_exit"/>
+  <has_action rdf:resource="#ACT_AutomaticExecute"/>
+  <has_action rdf:resource="#ACT_EmergencyStop"/>
+  <has_action rdf:resource="#ACT_Init"/>
+</function_block>
+
+<function_block rdf:about="#Sc09_FB_InductiveSensor">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+</function_block>
+
+<function_block rdf:about="#Sc09_FB_MicroSwitch">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+</function_block>
+
+<function_block rdf:about="#Sc09_FB_MonostableCylinder">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <has_action rdf:resource="#ACT_Extend"/>
+  <has_action rdf:resource="#ACT_Retract"/>
+</function_block>
+
+<function_block rdf:about="#Sc09_FB_Motor">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <has_action rdf:resource="#ACT_Stop"/>
+  <has_action rdf:resource="#ACT_TurnClockwise"/>
+  <has_action rdf:resource="#ACT_TurnCounterclockwise"/>
+</function_block>
+
+<function_block rdf:about="#Sc09_FB_OperationPanel">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <has_action rdf:resource="#ACT_TurnLampGreen_Off"/>
+  <has_action rdf:resource="#ACT_TurnLampGreen_On"/>
+  <has_action rdf:resource="#ACT_TurnLampWhite_Off"/>
+  <has_action rdf:resource="#ACT_TurnLampWhite_On"/>
+</function_block>
+
+<function_block rdf:about="#Sc09_FB_TurningTable">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+</function_block>
+
+<function_block rdf:about="#Sc09_FB_VacuumGripper">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <has_action rdf:resource="#ACT_Intake"/>
+  <has_action rdf:resource="#ACT_Release"/>
+</function_block>
+
+<function_block rdf:about="#Sc09_FB_VacuumSwitch">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+</function_block>
+
+<function_block rdf:about="#Sc09_FB_Valve">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <has_action rdf:resource="#ACT_TurnVacuumOff"/>
+  <has_action rdf:resource="#ACT_TurnVacuumOn"/>
+</function_block>
+
+<function_block rdf:about="#Sc09_FB_Crane">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <has_action rdf:resource="#Reset_Timer"/>
+  <has_action rdf:resource="#Reset_Variables"/>
+  <has_action rdf:resource="#Set_Timer50ms"/>
+  <has_action rdf:resource="#Set_WPTypeEqualsStack"/>
+  <has_action rdf:resource="#TurnClockwise_AND_Timer8000ms"/>
+  <has_action rdf:resource="#TurnCounterclockwise_AND_Timer8000ms"/>
+  <has_action rdf:resource="#TurnVacuumOn_AND_Timer2000ms"/>
+  <has_action rdf:resource="#ACT_MoveToRamp"/>
+  <has_action rdf:resource="#ACT_MoveToStack"/>
+  <has_action rdf:resource="#ACT_PickUpWP"/>
+  <has_action rdf:resource="#ACT_PutDownWP"/>
+  <has_action rdf:resource="#ACT_AutomaticExecute"/>
+  <has_action rdf:resource="#ACT_EmergencyStop"/>
+  <has_action rdf:resource="#ACT_Init"/>
+</function_block>
+
+<function_block rdf:about="#Sc09_FB_Stack">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <has_action rdf:resource="#Reset_Timer"/>
+  <has_action rdf:resource="#Reset_Variables"/>
+  <has_action rdf:resource="#Set_Timer250ms"/>
+  <has_action rdf:resource="#Set_WPParameters_AND_WPProvided"/>
+  <has_action rdf:resource="#ACT_ProvideWP"/>
+  <has_action rdf:resource="#ACT_AutomaticExecute"/>
+  <has_action rdf:resource="#ACT_EmergencyStop"/>
+  <has_action rdf:resource="#ACT_Init"/>
+</function_block>
+
+<function_block rdf:about="#Sc09_FB_PPU">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <has_action rdf:resource="#ACT_CheckEmergency"/>
+  <has_action rdf:resource="#ACT_Start"/>
+  <has_action rdf:resource="#AutomaticExecute_entry"/>
+  <has_action rdf:resource="#CallAll_AutomationExecutes"/>
+  <has_action rdf:resource="#EmergencyStop_entry"/>
+  <has_action rdf:resource="#Init_entry"/>
+  <has_action rdf:resource="#Ready_To_Initialise_active"/>
+  <has_action rdf:resource="#SFC_Reset_active"/>
+  <has_action rdf:resource="#SFC_Reset_entry"/>
+  <has_action rdf:resource="#SFC_Reset_Reset_active"/>
+  <has_action rdf:resource="#SFC_Reset_Reset_entry"/>
+  <has_action rdf:resource="#SFC_Reset_Reset_exit"/>
+  <has_action rdf:resource="#ACT_AutomaticExecute"/>
+  <has_action rdf:resource="#ACT_EmergencyStop"/>
+  <has_action rdf:resource="#ACT_Init"/>
+</function_block>
+
+<function_block rdf:about="#Sc10_FB_InductiveSensor">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+</function_block>
+
+<function_block rdf:about="#Sc10_FB_MicroSwitch">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+</function_block>
+
+<function_block rdf:about="#Sc10_FB_MonostableCylinder">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <has_action rdf:resource="#ACT_Extend"/>
+  <has_action rdf:resource="#ACT_Retract"/>
+</function_block>
+
+<function_block rdf:about="#Sc10_FB_Motor">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <has_action rdf:resource="#ACT_Stop"/>
+  <has_action rdf:resource="#ACT_TurnClockwise"/>
+  <has_action rdf:resource="#ACT_TurnCounterclockwise"/>
+</function_block>
+
+<function_block rdf:about="#Sc10_FB_OperationPanel">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <has_action rdf:resource="#ACT_TurnLampGreen_Off"/>
+  <has_action rdf:resource="#ACT_TurnLampGreen_On"/>
+  <has_action rdf:resource="#ACT_TurnLampWhite_Off"/>
+  <has_action rdf:resource="#ACT_TurnLampWhite_On"/>
+</function_block>
+
+<function_block rdf:about="#Sc10_FB_TurningTable">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+</function_block>
+
+<function_block rdf:about="#Sc10_FB_VacuumGripper">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <has_action rdf:resource="#ACT_Intake"/>
+  <has_action rdf:resource="#ACT_Release"/>
+</function_block>
+
+<function_block rdf:about="#Sc10_FB_VacuumSwitch">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+</function_block>
+
+<function_block rdf:about="#Sc10_FB_Valve">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <has_action rdf:resource="#ACT_TurnVacuumOff"/>
+  <has_action rdf:resource="#ACT_TurnVacuumOn"/>
+</function_block>
+
+<function_block rdf:about="#Sc10_FB_Crane">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <has_action rdf:resource="#Reset_Timer"/>
+  <has_action rdf:resource="#Reset_Variables"/>
+  <has_action rdf:resource="#Set_Timer50ms"/>
+  <has_action rdf:resource="#Set_WPTypeEqualsStack"/>
+  <has_action rdf:resource="#TurnClockwise_AND_Timer8000ms"/>
+  <has_action rdf:resource="#TurnCounterclockwise_AND_Timer8000ms"/>
+  <has_action rdf:resource="#TurnVacuumOn_AND_Timer2000ms"/>
+  <has_action rdf:resource="#ACT_MoveToRamp"/>
+  <has_action rdf:resource="#ACT_MoveToStack"/>
+  <has_action rdf:resource="#ACT_PickUpWP"/>
+  <has_action rdf:resource="#ACT_PutDownWP"/>
+  <has_action rdf:resource="#ACT_AutomaticExecute"/>
+  <has_action rdf:resource="#ACT_EmergencyStop"/>
+  <has_action rdf:resource="#ACT_Init"/>
+</function_block>
+
+<function_block rdf:about="#Sc10_FB_Stack">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <has_action rdf:resource="#Reset_Timer"/>
+  <has_action rdf:resource="#Reset_Variables"/>
+  <has_action rdf:resource="#Set_Timer250ms"/>
+  <has_action rdf:resource="#Set_WPParameters_AND_WPProvided"/>
+  <has_action rdf:resource="#ACT_ProvideWP"/>
+  <has_action rdf:resource="#ACT_AutomaticExecute"/>
+  <has_action rdf:resource="#ACT_EmergencyStop"/>
+  <has_action rdf:resource="#ACT_Init"/>
+</function_block>
+
+<function_block rdf:about="#Sc10_FB_PPU">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <has_action rdf:resource="#ACT_CheckEmergency"/>
+  <has_action rdf:resource="#ACT_Start"/>
+  <has_action rdf:resource="#AutomaticExecute_entry"/>
+  <has_action rdf:resource="#CallAll_AutomationExecutes"/>
+  <has_action rdf:resource="#EmergencyStop_entry"/>
+  <has_action rdf:resource="#Init_entry"/>
+  <has_action rdf:resource="#Ready_To_Initialise_active"/>
+  <has_action rdf:resource="#SFC_Reset_active"/>
+  <has_action rdf:resource="#SFC_Reset_entry"/>
+  <has_action rdf:resource="#SFC_Reset_Reset_active"/>
+  <has_action rdf:resource="#SFC_Reset_Reset_entry"/>
+  <has_action rdf:resource="#SFC_Reset_Reset_exit"/>
+  <has_action rdf:resource="#ACT_AutomaticExecute"/>
+  <has_action rdf:resource="#ACT_EmergencyStop"/>
+  <has_action rdf:resource="#ACT_Init"/>
+</function_block>
+
+<function_block rdf:about="#Sc11_FB_InductiveSensor">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+</function_block>
+
+<function_block rdf:about="#Sc11_FB_MicroSwitch">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+</function_block>
+
+<function_block rdf:about="#Sc11_FB_MonostableCylinder">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <has_action rdf:resource="#ACT_Extend"/>
+  <has_action rdf:resource="#ACT_Retract"/>
+</function_block>
+
+<function_block rdf:about="#Sc11_FB_Motor">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <has_action rdf:resource="#ACT_Stop"/>
+  <has_action rdf:resource="#ACT_TurnClockwise"/>
+  <has_action rdf:resource="#ACT_TurnCounterclockwise"/>
+</function_block>
+
+<function_block rdf:about="#Sc11_FB_OperationPanel">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <has_action rdf:resource="#ACT_TurnLampGreen_Off"/>
+  <has_action rdf:resource="#ACT_TurnLampGreen_On"/>
+  <has_action rdf:resource="#ACT_TurnLampWhite_Off"/>
+  <has_action rdf:resource="#ACT_TurnLampWhite_On"/>
+</function_block>
+
+<function_block rdf:about="#Sc11_FB_TurningTable">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+</function_block>
+
+<function_block rdf:about="#Sc11_FB_VacuumGripper">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <has_action rdf:resource="#ACT_Intake"/>
+  <has_action rdf:resource="#ACT_Release"/>
+</function_block>
+
+<function_block rdf:about="#Sc11_FB_VacuumSwitch">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+</function_block>
+
+<function_block rdf:about="#Sc11_FB_Valve">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <has_action rdf:resource="#ACT_TurnVacuumOff"/>
+  <has_action rdf:resource="#ACT_TurnVacuumOn"/>
+</function_block>
+
+<function_block rdf:about="#Sc11_FB_Crane">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <has_action rdf:resource="#Reset_Timer"/>
+  <has_action rdf:resource="#Reset_Variables"/>
+  <has_action rdf:resource="#Set_Timer50ms"/>
+  <has_action rdf:resource="#Set_WPTypeEqualsStack"/>
+  <has_action rdf:resource="#TurnClockwise_AND_Timer8000ms"/>
+  <has_action rdf:resource="#TurnCounterclockwise_AND_Timer8000ms"/>
+  <has_action rdf:resource="#TurnVacuumOn_AND_Timer2000ms"/>
+  <has_action rdf:resource="#ACT_MoveToRamp"/>
+  <has_action rdf:resource="#ACT_MoveToStack"/>
+  <has_action rdf:resource="#ACT_PickUpWP"/>
+  <has_action rdf:resource="#ACT_PutDownWP"/>
+  <has_action rdf:resource="#ACT_AutomaticExecute"/>
+  <has_action rdf:resource="#ACT_EmergencyStop"/>
+  <has_action rdf:resource="#ACT_Init"/>
+</function_block>
+
+<function_block rdf:about="#Sc11_FB_Stack">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <has_action rdf:resource="#Reset_Timer"/>
+  <has_action rdf:resource="#Reset_Variables"/>
+  <has_action rdf:resource="#Set_Timer250ms"/>
+  <has_action rdf:resource="#Set_WPParameters_AND_WPProvided"/>
+  <has_action rdf:resource="#ACT_ProvideWP"/>
+  <has_action rdf:resource="#ACT_AutomaticExecute"/>
+  <has_action rdf:resource="#ACT_EmergencyStop"/>
+  <has_action rdf:resource="#ACT_Init"/>
+</function_block>
+
+<function_block rdf:about="#Sc11_FB_PPU">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <has_action rdf:resource="#ACT_CheckEmergency"/>
+  <has_action rdf:resource="#ACT_Start"/>
+  <has_action rdf:resource="#AutomaticExecute_entry"/>
+  <has_action rdf:resource="#CallAll_AutomationExecutes"/>
+  <has_action rdf:resource="#EmergencyStop_entry"/>
+  <has_action rdf:resource="#Init_entry"/>
+  <has_action rdf:resource="#Ready_To_Initialise_active"/>
+  <has_action rdf:resource="#SFC_Reset_active"/>
+  <has_action rdf:resource="#SFC_Reset_entry"/>
+  <has_action rdf:resource="#SFC_Reset_Reset_active"/>
+  <has_action rdf:resource="#SFC_Reset_Reset_entry"/>
+  <has_action rdf:resource="#SFC_Reset_Reset_exit"/>
+  <has_action rdf:resource="#ACT_AutomaticExecute"/>
+  <has_action rdf:resource="#ACT_EmergencyStop"/>
+  <has_action rdf:resource="#ACT_Init"/>
+</function_block>
+
+<function_block rdf:about="#Sc12_FB_InductiveSensor">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+</function_block>
+
+<function_block rdf:about="#Sc12_FB_MicroSwitch">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+</function_block>
+
+<function_block rdf:about="#Sc12_FB_MonostableCylinder">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <has_action rdf:resource="#ACT_Extend"/>
+  <has_action rdf:resource="#ACT_Retract"/>
+</function_block>
+
+<function_block rdf:about="#Sc12_FB_Motor">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <has_action rdf:resource="#ACT_Stop"/>
+  <has_action rdf:resource="#ACT_TurnClockwise"/>
+  <has_action rdf:resource="#ACT_TurnCounterclockwise"/>
+</function_block>
+
+<function_block rdf:about="#Sc12_FB_OperationPanel">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <has_action rdf:resource="#ACT_TurnLampGreen_Off"/>
+  <has_action rdf:resource="#ACT_TurnLampGreen_On"/>
+  <has_action rdf:resource="#ACT_TurnLampWhite_Off"/>
+  <has_action rdf:resource="#ACT_TurnLampWhite_On"/>
+</function_block>
+
+<function_block rdf:about="#Sc12_FB_TurningTable">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+</function_block>
+
+<function_block rdf:about="#Sc12_FB_VacuumGripper">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <has_action rdf:resource="#ACT_Intake"/>
+  <has_action rdf:resource="#ACT_Release"/>
+</function_block>
+
+<function_block rdf:about="#Sc12_FB_VacuumSwitch">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+</function_block>
+
+<function_block rdf:about="#Sc12_FB_Valve">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <has_action rdf:resource="#ACT_TurnVacuumOff"/>
+  <has_action rdf:resource="#ACT_TurnVacuumOn"/>
+</function_block>
+
+<function_block rdf:about="#Sc12_FB_Crane">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <has_action rdf:resource="#Reset_Timer"/>
+  <has_action rdf:resource="#Reset_Variables"/>
+  <has_action rdf:resource="#Set_Timer50ms"/>
+  <has_action rdf:resource="#Set_WPTypeEqualsStack"/>
+  <has_action rdf:resource="#TurnClockwise_AND_Timer8000ms"/>
+  <has_action rdf:resource="#TurnCounterclockwise_AND_Timer8000ms"/>
+  <has_action rdf:resource="#TurnVacuumOn_AND_Timer2000ms"/>
+  <has_action rdf:resource="#ACT_MoveToRamp"/>
+  <has_action rdf:resource="#ACT_MoveToStack"/>
+  <has_action rdf:resource="#ACT_PickUpWP"/>
+  <has_action rdf:resource="#ACT_PutDownWP"/>
+  <has_action rdf:resource="#ACT_AutomaticExecute"/>
+  <has_action rdf:resource="#ACT_EmergencyStop"/>
+  <has_action rdf:resource="#ACT_Init"/>
+</function_block>
+
+<function_block rdf:about="#Sc12_FB_Stack">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <has_action rdf:resource="#Reset_Timer"/>
+  <has_action rdf:resource="#Reset_Variables"/>
+  <has_action rdf:resource="#Set_Timer250ms"/>
+  <has_action rdf:resource="#Set_WPParameters_AND_WPProvided"/>
+  <has_action rdf:resource="#ACT_ProvideWP"/>
+  <has_action rdf:resource="#ACT_AutomaticExecute"/>
+  <has_action rdf:resource="#ACT_EmergencyStop"/>
+  <has_action rdf:resource="#ACT_Init"/>
+</function_block>
+
+<function_block rdf:about="#Sc12_FB_PPU">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <has_action rdf:resource="#ACT_CheckEmergency"/>
+  <has_action rdf:resource="#ACT_Start"/>
+  <has_action rdf:resource="#AutomaticExecute_entry"/>
+  <has_action rdf:resource="#CallAll_AutomationExecutes"/>
+  <has_action rdf:resource="#EmergencyStop_entry"/>
+  <has_action rdf:resource="#Init_entry"/>
+  <has_action rdf:resource="#Ready_To_Initialise_active"/>
+  <has_action rdf:resource="#SFC_Reset_active"/>
+  <has_action rdf:resource="#SFC_Reset_entry"/>
+  <has_action rdf:resource="#SFC_Reset_Reset_active"/>
+  <has_action rdf:resource="#SFC_Reset_Reset_entry"/>
+  <has_action rdf:resource="#SFC_Reset_Reset_exit"/>
+  <has_action rdf:resource="#ACT_AutomaticExecute"/>
+  <has_action rdf:resource="#ACT_EmergencyStop"/>
+  <has_action rdf:resource="#ACT_Init"/>
+</function_block>
+
+<function_block rdf:about="#Sc13_FB_InductiveSensor">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+</function_block>
+
+<function_block rdf:about="#Sc13_FB_MicroSwitch">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+</function_block>
+
+<function_block rdf:about="#Sc13_FB_MonostableCylinder">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <has_action rdf:resource="#ACT_Extend"/>
+  <has_action rdf:resource="#ACT_Retract"/>
+</function_block>
+
+<function_block rdf:about="#Sc13_FB_Motor">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <has_action rdf:resource="#ACT_Stop"/>
+  <has_action rdf:resource="#ACT_TurnClockwise"/>
+  <has_action rdf:resource="#ACT_TurnCounterclockwise"/>
+</function_block>
+
+<function_block rdf:about="#Sc13_FB_OperationPanel">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <has_action rdf:resource="#ACT_TurnLampGreen_Off"/>
+  <has_action rdf:resource="#ACT_TurnLampGreen_On"/>
+  <has_action rdf:resource="#ACT_TurnLampWhite_Off"/>
+  <has_action rdf:resource="#ACT_TurnLampWhite_On"/>
+</function_block>
+
+<function_block rdf:about="#Sc13_FB_TurningTable">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+</function_block>
+
+<function_block rdf:about="#Sc13_FB_VacuumGripper">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <has_action rdf:resource="#ACT_Intake"/>
+  <has_action rdf:resource="#ACT_Release"/>
+</function_block>
+
+<function_block rdf:about="#Sc13_FB_VacuumSwitch">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+</function_block>
+
+<function_block rdf:about="#Sc13_FB_Valve">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <has_action rdf:resource="#ACT_TurnVacuumOff"/>
+  <has_action rdf:resource="#ACT_TurnVacuumOn"/>
+</function_block>
+
+<function_block rdf:about="#Sc13_FB_Crane">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <has_action rdf:resource="#Reset_Timer"/>
+  <has_action rdf:resource="#Reset_Variables"/>
+  <has_action rdf:resource="#Set_Timer50ms"/>
+  <has_action rdf:resource="#Set_WPTypeEqualsStack"/>
+  <has_action rdf:resource="#TurnClockwise_AND_Timer8000ms"/>
+  <has_action rdf:resource="#TurnCounterclockwise_AND_Timer8000ms"/>
+  <has_action rdf:resource="#TurnVacuumOn_AND_Timer2000ms"/>
+  <has_action rdf:resource="#ACT_MoveToRamp"/>
+  <has_action rdf:resource="#ACT_MoveToStack"/>
+  <has_action rdf:resource="#ACT_PickUpWP"/>
+  <has_action rdf:resource="#ACT_PutDownWP"/>
+  <has_action rdf:resource="#ACT_AutomaticExecute"/>
+  <has_action rdf:resource="#ACT_EmergencyStop"/>
+  <has_action rdf:resource="#ACT_Init"/>
+</function_block>
+
+<function_block rdf:about="#Sc13_FB_Stack">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <has_action rdf:resource="#Reset_Timer"/>
+  <has_action rdf:resource="#Reset_Variables"/>
+  <has_action rdf:resource="#Set_Timer250ms"/>
+  <has_action rdf:resource="#Set_WPParameters_AND_WPProvided"/>
+  <has_action rdf:resource="#ACT_ProvideWP"/>
+  <has_action rdf:resource="#ACT_AutomaticExecute"/>
+  <has_action rdf:resource="#ACT_EmergencyStop"/>
+  <has_action rdf:resource="#ACT_Init"/>
+</function_block>
+
+<function_block rdf:about="#Sc13_FB_PPU">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <has_action rdf:resource="#ACT_CheckEmergency"/>
+  <has_action rdf:resource="#ACT_Start"/>
+  <has_action rdf:resource="#AutomaticExecute_entry"/>
+  <has_action rdf:resource="#CallAll_AutomationExecutes"/>
+  <has_action rdf:resource="#EmergencyStop_entry"/>
+  <has_action rdf:resource="#Init_entry"/>
+  <has_action rdf:resource="#Ready_To_Initialise_active"/>
+  <has_action rdf:resource="#SFC_Reset_active"/>
+  <has_action rdf:resource="#SFC_Reset_entry"/>
+  <has_action rdf:resource="#SFC_Reset_Reset_active"/>
+  <has_action rdf:resource="#SFC_Reset_Reset_entry"/>
+  <has_action rdf:resource="#SFC_Reset_Reset_exit"/>
+  <has_action rdf:resource="#ACT_AutomaticExecute"/>
+  <has_action rdf:resource="#ACT_EmergencyStop"/>
+  <has_action rdf:resource="#ACT_Init"/>
+</function_block>
+
+<function_block rdf:about="#Sc14_FB_InductiveSensor">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+</function_block>
+
+<function_block rdf:about="#Sc14_FB_MicroSwitch">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+</function_block>
+
+<function_block rdf:about="#Sc14_FB_MonostableCylinder">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <has_action rdf:resource="#ACT_Extend"/>
+  <has_action rdf:resource="#ACT_Retract"/>
+</function_block>
+
+<function_block rdf:about="#Sc14_FB_Motor">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <has_action rdf:resource="#ACT_Stop"/>
+  <has_action rdf:resource="#ACT_TurnClockwise"/>
+  <has_action rdf:resource="#ACT_TurnCounterclockwise"/>
+</function_block>
+
+<function_block rdf:about="#Sc14_FB_OperationPanel">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <has_action rdf:resource="#ACT_TurnLampGreen_Off"/>
+  <has_action rdf:resource="#ACT_TurnLampGreen_On"/>
+  <has_action rdf:resource="#ACT_TurnLampWhite_Off"/>
+  <has_action rdf:resource="#ACT_TurnLampWhite_On"/>
+</function_block>
+
+<function_block rdf:about="#Sc14_FB_TurningTable">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+</function_block>
+
+<function_block rdf:about="#Sc14_FB_VacuumGripper">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <has_action rdf:resource="#ACT_Intake"/>
+  <has_action rdf:resource="#ACT_Release"/>
+</function_block>
+
+<function_block rdf:about="#Sc14_FB_VacuumSwitch">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+</function_block>
+
+<function_block rdf:about="#Sc14_FB_Valve">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <has_action rdf:resource="#ACT_TurnVacuumOff"/>
+  <has_action rdf:resource="#ACT_TurnVacuumOn"/>
+</function_block>
+
+<function_block rdf:about="#Sc14_FB_Crane">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <has_action rdf:resource="#Reset_Timer"/>
+  <has_action rdf:resource="#Reset_Variables"/>
+  <has_action rdf:resource="#Set_Timer50ms"/>
+  <has_action rdf:resource="#Set_WPTypeEqualsStack"/>
+  <has_action rdf:resource="#TurnClockwise_AND_Timer8000ms"/>
+  <has_action rdf:resource="#TurnCounterclockwise_AND_Timer8000ms"/>
+  <has_action rdf:resource="#TurnVacuumOn_AND_Timer2000ms"/>
+  <has_action rdf:resource="#ACT_MoveToRamp"/>
+  <has_action rdf:resource="#ACT_MoveToStack"/>
+  <has_action rdf:resource="#ACT_PickUpWP"/>
+  <has_action rdf:resource="#ACT_PutDownWP"/>
+  <has_action rdf:resource="#ACT_AutomaticExecute"/>
+  <has_action rdf:resource="#ACT_EmergencyStop"/>
+  <has_action rdf:resource="#ACT_Init"/>
+</function_block>
+
+<function_block rdf:about="#Sc14_FB_Stack">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <has_action rdf:resource="#Reset_Timer"/>
+  <has_action rdf:resource="#Reset_Variables"/>
+  <has_action rdf:resource="#Set_Timer250ms"/>
+  <has_action rdf:resource="#Set_WPParameters_AND_WPProvided"/>
+  <has_action rdf:resource="#ACT_ProvideWP"/>
+  <has_action rdf:resource="#ACT_AutomaticExecute"/>
+  <has_action rdf:resource="#ACT_EmergencyStop"/>
+  <has_action rdf:resource="#ACT_Init"/>
+</function_block>
+
+<function_block rdf:about="#Sc14_FB_PPU">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <has_action rdf:resource="#ACT_CheckEmergency"/>
+  <has_action rdf:resource="#ACT_Start"/>
+  <has_action rdf:resource="#AutomaticExecute_entry"/>
+  <has_action rdf:resource="#CallAll_AutomationExecutes"/>
+  <has_action rdf:resource="#EmergencyStop_entry"/>
+  <has_action rdf:resource="#Init_entry"/>
+  <has_action rdf:resource="#Ready_To_Initialise_active"/>
+  <has_action rdf:resource="#SFC_Reset_active"/>
+  <has_action rdf:resource="#SFC_Reset_entry"/>
+  <has_action rdf:resource="#SFC_Reset_Reset_active"/>
+  <has_action rdf:resource="#SFC_Reset_Reset_entry"/>
+  <has_action rdf:resource="#SFC_Reset_Reset_exit"/>
+  <has_action rdf:resource="#ACT_AutomaticExecute"/>
+  <has_action rdf:resource="#ACT_EmergencyStop"/>
+  <has_action rdf:resource="#ACT_Init"/>
+</function_block>
+
+
+</rdf:RDF>

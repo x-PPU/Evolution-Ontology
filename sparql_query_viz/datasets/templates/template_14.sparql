@@ -1,0 +1,7 @@
+CONSTRUCT {
+    ?x a [:node1]
+}
+WHERE {
+    ?y a [:node2] ;
+          [:edge] ?x
+}

@@ -1,0 +1,7 @@
+SELECT ?y (count(distinct ?x) AS ?count)
+{
+    ?x a [:node] ;
+            [:edge] ?y ;
+}
+GROUP BY ?y
+ORDER BY desc(?count)

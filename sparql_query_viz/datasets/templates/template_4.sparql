@@ -1,0 +1,2 @@
+SELECT (COUNT(?x) AS ?nb){
+    ?x a [:node] . }

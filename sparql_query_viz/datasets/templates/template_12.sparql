@@ -1,0 +1,4 @@
+ASK {
+    ?x a [:node] .
+    ?y [:edge] ?x .
+}

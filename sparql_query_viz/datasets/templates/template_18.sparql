@@ -1,0 +1,12 @@
+SELECT ?x
+WHERE {
+    ?x a [:node1] ;
+        [:edge1] ?y .
+    ?y a [:node2] ;
+        [:edge2] ?z .
+     FILTER ( ?z > 0 )
+     FILTER NOT EXISTS {
+        ?x a [:node3] .
+    }
+}
+ORDER BY ?x

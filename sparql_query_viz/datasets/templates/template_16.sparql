@@ -1,0 +1,11 @@
+SELECT DISTINCT ?z (COUNT(DISTINCT ?y) AS ?count)
+WHERE {
+    ?w a [:node1] ;
+        [:edge1] ?x ;
+        [:edge2]/[:edge2] ?y .
+    ?x a [:node2] ;
+        [:edge3] ?z.
+    ?y a [:node3] .
+}
+GROUP BY ?z
+HAVING ( ?z != ?count )

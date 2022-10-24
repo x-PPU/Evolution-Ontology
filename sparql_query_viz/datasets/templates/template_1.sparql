@@ -1,0 +1,2 @@
+SELECT (COUNT(?x) AS ?count){
+    ?x a owl:Class . }

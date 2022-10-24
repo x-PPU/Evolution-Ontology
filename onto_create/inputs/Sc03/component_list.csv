@@ -1,0 +1,129 @@
+﻿Position;Resource;Clamp;Description;Component;Type
+1;100;X1;Stack;;
+100;100A1;X1.1;Extend seperator (Valve);Stack;DO
+100;100B9;X1.2;Seperator is extended (Reed Switch);Stack;DI
+100;100B8;X1.3;Seperator is retracted (Reed Switch);Stack;DI
+100;100S11;X1.4;WP is available (Micro Switch);Stack;DI
+100;100B10;X1.5;WP  is metallic;Stack;DI
+2;200;X2;Crane;;
+200;200A1;X2.1;Extended lifting cylinder (value);Crane;DO
+200;200B7;X2.2;Lifting cylinder extended (Read Switch);Crane;DI
+200;200B6;X2.3;Lifting cylinder retracted (Read Switch);Crane;DI
+200;200A2;X2.4;Intake workpiece (Value);Crane;DO
+200;200A3;X2.5;Release workpiece (Value);Crane;DO
+200;200B5;X2.6;WP take in (Vacuum Switch);Crane;DI
+200;200S8;X2.7;Crane at stack (Micro Switch);Crane;DI
+200;200S9;X2.8;Crane at ramp (Micro Switch);Crane;DI
+200;200A5;X2.9;Turn left (Motor);Crane;DO
+200;200A6;X2.10;Turn right (Motor);Crane;DO
+3;300;X3;Stamp;;
+300;300B8;X3.1;Stamping cylinder raised (Reed Switch);Stamp;DI
+300;300B9;X3.2;Stamping cylinder lowered (Reed Switch);Stamp;DI
+300;300B7;X3.3;Sliding cylinder extended (Reed Switch);Stamp;DI
+300;300B6;X3.4;Sliding cylinder retracted (Reed Switch);Stamp;DI
+300;300S10;X3.5;WP is avialable (Micro Switch);Stamp;DI
+300;300A1;X3.6;Extend sliding cylinder (Valve);Stamp;DO
+300;300A2;X3.7;Retract sliding cylinder (Valve);Stamp;DO
+300;300A3;X3.8;Lower stamping cylinder (Valve);Stamp;DO
+;;;;;
+;;;;;
+;;;;;
+;;;;;
+;;;;;
+;;;;;
+;;;;;
+;;;;;
+;;;;;
+;;;;;
+;;;;;
+;;;;;
+;;;;;
+;;;;;
+;;;;;
+;;;;;
+;;;;;
+;;;;;
+;;;;;
+;;;;;
+;;;;;
+;;;;;
+;;;;;
+;;;;;
+;;;;;
+;;;;;
+;;;;;
+;;;;;
+;;;;;
+;;;;;
+;;;;;
+;;;;;
+;;;;;
+;;;;;
+;;;;;
+;;;;;
+;;;;;
+;;;;;
+;;;;;
+;;;;;
+;;;;;
+;;;;;
+;;;;;
+;;;;;
+;;;;;
+;;;;;
+;;;;;
+;;;;;
+;;;;;
+;;;;;
+;;;;;
+;;;;;
+;;;;;
+;;;;;
+;;;;;
+;;;;;
+;;;;;
+;;;;;
+;;;;;
+;;;;;
+;;;;;
+;;;;;
+;;;;;
+;;;;;
+;;;;;
+;;;;;
+;;;;;
+;;;;;
+;;;;;
+;;;;;
+;;;;;
+;;;;;
+;;;;;
+;;;;;
+;;;;;
+;;;;;
+;;;;;
+;;;;;
+;;;;;
+;;;;;
+;;;;;
+;;;;;
+;;;;;
+;;;;;
+;;;;;
+;;;;;
+;;;;;
+;;;;;
+;;;;;
+;;;;;
+;;;;;
+;;;;;
+;;;;;
+;;;;;
+;;;;;
+;;;;;
+;;;;;
+;;;;;
+;;;;;
+;;;;;
+;;;;;
+;;;;;

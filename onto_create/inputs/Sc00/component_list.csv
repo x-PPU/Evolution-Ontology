@@ -1,0 +1,128 @@
+﻿Position;Resource;Clamp;Description;Component;Type
+1;100;X1;Stack;;
+100;100A1;X1.1;Extend seperator (Valve);Stack;DO
+100;100B9;X1.2;Seperator is extended (Reed Switch);Stack;DI
+100;100B8;X1.3;Seperator is retracted (Reed Switch);Stack;DI
+100;100S11;X1.4;WP is available (Micro Switch);Stack;DI
+2;200;X2;Crane;;
+200;200A1;X2.1;Extended lifting cylinder (Valve);Crane;DO
+200;200B7;X2.2;Lifting cylinder extended (Reed Switch);Crane;DI
+200;200B6;X2.3;Lifting cylinder retracted (Reed Switch);Crane;DI
+200;200A2;X2.4;Intake workpiece (Valve);Crane;DO
+200;200A3;X2.5;Release workpiece (Valve);Crane;DO
+200;200B5;X2.6;WP take in (Vacuum Switch);Crane;DI
+200;200S8;X2.7;Crane at stack (Micro Switch);Crane;DI
+200;200S9;X2.8;Crane at ramp (Micro Switch);Crane;DI
+200;200A5;X2.9;Turn left (Motor);Crane;DO
+200;200A6;X2.10;Turn right (Motor);Crane;DO
+3;300;;Ramp;;
+;;;;;
+;;;;;
+;;;;;
+;;;;;
+;;;;;
+;;;;;
+;;;;;
+;;;;;
+;;;;;
+;;;;;
+;;;;;
+;;;;;
+;;;;;
+;;;;;
+;;;;;
+;;;;;
+;;;;;
+;;;;;
+;;;;;
+;;;;;
+;;;;;
+;;;;;
+;;;;;
+;;;;;
+;;;;;
+;;;;;
+;;;;;
+;;;;;
+;;;;;
+;;;;;
+;;;;;
+;;;;;
+;;;;;
+;;;;;
+;;;;;
+;;;;;
+;;;;;
+;;;;;
+;;;;;
+;;;;;
+;;;;;
+;;;;;
+;;;;;
+;;;;;
+;;;;;
+;;;;;
+;;;;;
+;;;;;
+;;;;;
+;;;;;
+;;;;;
+;;;;;
+;;;;;
+;;;;;
+;;;;;
+;;;;;
+;;;;;
+;;;;;
+;;;;;
+;;;;;
+;;;;;
+;;;;;
+;;;;;
+;;;;;
+;;;;;
+;;;;;
+;;;;;
+;;;;;
+;;;;;
+;;;;;
+;;;;;
+;;;;;
+;;;;;
+;;;;;
+;;;;;
+;;;;;
+;;;;;
+;;;;;
+;;;;;
+;;;;;
+;;;;;
+;;;;;
+;;;;;
+;;;;;
+;;;;;
+;;;;;
+;;;;;
+;;;;;
+;;;;;
+;;;;;
+;;;;;
+;;;;;
+;;;;;
+;;;;;
+;;;;;
+;;;;;
+;;;;;
+;;;;;
+;;;;;
+;;;;;
+;;;;;
+;;;;;
+;;;;;
+;;;;;
+;;;;;
+;;;;;
+;;;;;
+;;;;;
+;;;;;
+;;;;;

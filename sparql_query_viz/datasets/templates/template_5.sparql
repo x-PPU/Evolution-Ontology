@@ -1,0 +1,5 @@
+SELECT x? y?
+{
+   ?x a [:node] .
+   ?x [:edge] ?y .
+}
